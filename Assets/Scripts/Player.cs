@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     float _maxYPos = 0.0f;
     float _rightOutOfBounds = 11.1f;
     float _leftOutOfBounds = -11.2f;
+    float _laserSpawnOffset = 0.7f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,8 @@ public class Player : MonoBehaviour
         Vector3 curPos = SetBounds(transform.position);
         transform.position = curPos;
         if (_input.Fire) {
-            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            var posToSpawn = new Vector3(transform.position.x, transform.position.y + _laserSpawnOffset, transform.position.z);
+            Instantiate(_laserPrefab, posToSpawn, Quaternion.identity);
         }
 
     }
