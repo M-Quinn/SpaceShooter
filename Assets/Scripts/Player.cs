@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     InputHandler _input;
+    [SerializeField]
+    GameObject _laserPrefab;
 
     float _speed = 5.0f;
     float _minYPos = -3.8f;
@@ -25,6 +27,9 @@ public class Player : MonoBehaviour
         transform.Translate(new Vector3(_input.Move.x, _input.Move.y, 0) * _speed * Time.deltaTime);
         Vector3 curPos = SetBounds(transform.position);
         transform.position = curPos;
+        if (_input.Fire) {
+            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+        }
 
     }
 
