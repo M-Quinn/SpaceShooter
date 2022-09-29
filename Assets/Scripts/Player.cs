@@ -23,13 +23,19 @@ public class Player : MonoBehaviour
     {
 
         transform.Translate(new Vector3(_input.Move.x, _input.Move.y, 0) * _speed * Time.deltaTime);
-        var curPos = transform.position;
+        Vector3 curPos = SetBounds(transform.position);
+        transform.position = curPos;
+
+    }
+
+    private Vector3 SetBounds(Vector3 currentPosition)
+    {
+        var curPos = currentPosition;
         curPos.y = Mathf.Clamp(curPos.y, _minYPos, _maxYPos);
         if (curPos.x > _rightOutOfBounds)
             curPos.x = _leftOutOfBounds + 0.1f;
         else if (curPos.x < _leftOutOfBounds)
             curPos.x = _rightOutOfBounds - 0.1f;
-        transform.position = curPos;
-
+        return curPos;
     }
 }
