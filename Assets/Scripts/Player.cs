@@ -15,9 +15,16 @@ public class Player : MonoBehaviour
     float _rightOutOfBounds = 11.1f;
     float _leftOutOfBounds = -11.2f;
     float _laserSpawnOffset = 0.7f;
+
+
+    float _timeToWait = 0.3f;
+    float _cooldownTimer;
+
     // Start is called before the first frame update
     void Start()
     {
+        _cooldownTimer = Time.time + _timeToWait;
+
         transform.position = new Vector3(0, 0, 0);
     }
 
@@ -28,9 +35,12 @@ public class Player : MonoBehaviour
         transform.Translate(new Vector3(_input.Move.x, _input.Move.y, 0) * _speed * Time.deltaTime);
         Vector3 curPos = SetBounds(transform.position);
         transform.position = curPos;
-        if (_input.Fire) {
+
+
+        if (_input.Fire && Time.time >= _cooldownTimer) {
             var posToSpawn = new Vector3(transform.position.x, transform.position.y + _laserSpawnOffset, transform.position.z);
             Instantiate(_laserPrefab, posToSpawn, Quaternion.identity);
+            _cooldownTimer = Time.time + _timeToWait;
         }
 
     }
