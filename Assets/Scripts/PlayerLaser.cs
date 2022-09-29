@@ -12,6 +12,10 @@ public class PlayerLaser : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
+    private void Start()
+    {
+        Destroy(gameObject, 5.0f);
+    }
     private void Update()
     {
         transform.Translate(transform.up * _speed * Time.deltaTime);
