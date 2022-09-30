@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject _laserPrefab;
 
+    int _lives = 3;
+
     float _speed = 5.0f;
     float _minYPos = -3.8f;
     float _maxYPos = 0.0f;
@@ -60,5 +62,12 @@ public class Player : MonoBehaviour
         else if (curPos.x < _leftOutOfBounds)
             curPos.x = _rightOutOfBounds - 0.1f;
         return curPos;
+    }
+
+    public void Damage() {
+        _lives -= 1;
+        if (_lives <= 0) {
+            Destroy(gameObject);
+        }
     }
 }
