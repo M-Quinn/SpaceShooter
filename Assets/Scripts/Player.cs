@@ -37,12 +37,18 @@ public class Player : MonoBehaviour
         transform.position = curPos;
 
 
-        if (_input.Fire && Time.time >= _cooldownTimer) {
-            var posToSpawn = new Vector3(transform.position.x, transform.position.y + _laserSpawnOffset, transform.position.z);
-            Instantiate(_laserPrefab, posToSpawn, Quaternion.identity);
-            _cooldownTimer = Time.time + _timeToWait;
+        if (_input.Fire && Time.time >= _cooldownTimer)
+        {
+            FireLaser();
         }
 
+    }
+
+    private void FireLaser()
+    {
+        var posToSpawn = new Vector3(transform.position.x, transform.position.y + _laserSpawnOffset, transform.position.z);
+        Instantiate(_laserPrefab, posToSpawn, Quaternion.identity);
+        _cooldownTimer = Time.time + _timeToWait;
     }
 
     private Vector3 SetBounds(Vector3 currentPosition)
