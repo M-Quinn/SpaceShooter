@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Damage Player");
+            if (other.TryGetComponent<Player>(out var player)) {
+                player.Damage();
+            }
             Destroy(gameObject);
         }
         else if (other.CompareTag("Laser")) {
