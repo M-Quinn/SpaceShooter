@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject _enemyPrefab;
+    float _secondsToWait = 5.0f;
+    Vector3 positionToSpawn = Vector3.zero;
+
+    float _topOfTheScreen = 8.0f;
+    //Width of the screen
+    float _minX = -9.0f;
+    float _maxX = 9.0f;
+
+
+    private void Start()
     {
-        
+        StartCoroutine(SpawnCoroutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    IEnumerator SpawnCoroutine() {
+        while (true) {
+            positionToSpawn = new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, transform.position.z);
+            Instantiate(_enemyPrefab, positionToSpawn, Quaternion.identity);
+
+            yield return new WaitForSeconds(_secondsToWait);
+        }
     }
 }
