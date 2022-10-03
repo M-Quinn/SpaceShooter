@@ -12,12 +12,6 @@ public class Enemy : MonoBehaviour
     float _minX = -9.0f;
     float _maxX = 9.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
