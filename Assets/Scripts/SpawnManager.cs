@@ -13,8 +13,16 @@ public class SpawnManager : MonoBehaviour
     //Width of the screen
     float _minX = -9.0f;
     float _maxX = 9.0f;
-    bool _stopSpawning = true;
+    bool _stopSpawning = false;
 
+    private void OnEnable()
+    {
+        Player.PlayerDied += () => _stopSpawning = true;
+    }
+    private void OnDisable()
+    {
+        Player.PlayerDied -= () => _stopSpawning = true;
+    }
 
     private void Start()
     {
@@ -22,7 +30,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     IEnumerator SpawnCoroutine() {
-        while (_stopSpawning) {
+        while (!_stopSpawning) {
             positionToSpawn = new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, transform.position.z);
             GameObject temp = Instantiate(_enemyPrefab, positionToSpawn, Quaternion.identity);
             temp.transform.parent = _enemyContainer.transform;
