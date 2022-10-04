@@ -18,5 +18,19 @@ public class Powerup : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (_behavior) {
+            case PowerupLogic.TripleShot:
+                Debug.Log("TripleShot");
+                return;
+            case PowerupLogic.Shield:
+                return;
+            case PowerupLogic.SpeedBoost:
+                return;
+            default:
+                return;
+        }
+    }
 
 }
