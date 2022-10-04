@@ -12,9 +12,13 @@ public class PlayerLaser : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    private void Start()
+    private void OnEnable()
     {
-        Destroy(gameObject, 5.0f);
+        StartCoroutine(DisableGameObjectWithDelay(5.0f));
+    }
+    IEnumerator DisableGameObjectWithDelay(float delay) {
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
     }
     private void Update()
     {

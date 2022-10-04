@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+
     [SerializeField]
     InputHandler _input;
-    [SerializeField]
-    GameObject _laserPrefab;
+    [SerializeField] PooledObjects _objectPool;
     [Header("Laser Positions To Spawn")]
     [SerializeField] GameObject _topLaserPosition;
     [SerializeField] GameObject _leftLaserPosition;
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     float _rightOutOfBounds = 11.1f;
     float _leftOutOfBounds = -11.2f;
 
-    bool _isTripleShotEnabled = true;
+    bool _isTripleShotEnabled = false;
 
 
     float _timeToWait = 0.3f;
@@ -65,13 +66,13 @@ public class Player : MonoBehaviour
         _cooldownTimer = Time.time + _timeToWait;
     }
 
-    private void FireTripleShot() {
+    private void FireTripleShot() {/*
         Instantiate(_laserPrefab, _topLaserPosition.transform.position, Quaternion.identity);
         Instantiate(_laserPrefab, _leftLaserPosition.transform.position, Quaternion.identity);
-        Instantiate(_laserPrefab, _rightLaserPosition.transform.position, Quaternion.identity);
+        Instantiate(_laserPrefab, _rightLaserPosition.transform.position, Quaternion.identity);*/
     }
     private void FireNormalShot() {
-        Instantiate(_laserPrefab, _topLaserPosition.transform.position, Quaternion.identity);
+        _objectPool.GetPlayerLaser(_topLaserPosition.transform.position);
     }
 
     private Vector3 SetBounds(Vector3 currentPosition)
