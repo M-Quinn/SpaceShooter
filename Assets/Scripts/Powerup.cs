@@ -7,7 +7,7 @@ public class Powerup : MonoBehaviour
     enum PowerupLogic { TripleShot, Shield, SpeedBoost}
     [SerializeField]
     PowerupLogic _behavior;
-    float _speed;
+    float _speed = 3.0f;
     float _bottomOfScreen = -5.83f;
 
     private void Update()
