@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
 
     private void FireLaser()
     {
-        var posToSpawn = new Vector3(transform.position.x, transform.position.y + _laserSpawnOffset, transform.position.z);
-        Instantiate(_laserPrefab, posToSpawn, Quaternion.identity);
+        //Add logic to dynamically change the position of laser spawned or add another option for different types of shooting
+        Instantiate(_laserPrefab, _topLaserPosition.transform.position, Quaternion.identity);
         _cooldownTimer = Time.time + _timeToWait;
     }
 
