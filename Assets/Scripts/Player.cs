@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     InputHandler _input;
     [SerializeField]
     GameObject _laserPrefab;
+    [Header("Laser Positions To Spawn")]
+    [SerializeField] GameObject _topLaserPosition;
+    [SerializeField] GameObject _leftLaserPosition;
+    [SerializeField] GameObject _rightLaserPosition;
+
 
     int _lives = 3;
 
