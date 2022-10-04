@@ -22,7 +22,8 @@ public class Player : MonoBehaviour
     float _maxYPos = 0.0f;
     float _rightOutOfBounds = 11.1f;
     float _leftOutOfBounds = -11.2f;
-    float _laserSpawnOffset = 0.7f;
+
+    bool _isTripleShotEnabled = true;
 
 
     float _timeToWait = 0.3f;
@@ -56,9 +57,21 @@ public class Player : MonoBehaviour
 
     private void FireLaser()
     {
-        //Add logic to dynamically change the position of laser spawned or add another option for different types of shooting
-        Instantiate(_laserPrefab, _topLaserPosition.transform.position, Quaternion.identity);
+        
+        if (_isTripleShotEnabled)
+            FireTripleShot();
+
+        FireNormalShot();
         _cooldownTimer = Time.time + _timeToWait;
+    }
+
+    private void FireTripleShot() {
+        Instantiate(_laserPrefab, _topLaserPosition.transform.position, Quaternion.identity);
+        Instantiate(_laserPrefab, _leftLaserPosition.transform.position, Quaternion.identity);
+        Instantiate(_laserPrefab, _rightLaserPosition.transform.position, Quaternion.identity);
+    }
+    private void FireNormalShot() {
+        Instantiate(_laserPrefab, _topLaserPosition.transform.position, Quaternion.identity);
     }
 
     private Vector3 SetBounds(Vector3 currentPosition)
