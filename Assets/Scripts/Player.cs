@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     float _rightOutOfBounds = 11.1f;
     float _leftOutOfBounds = -11.2f;
 
-    bool _isTripleShotEnabled = false;
+    bool _isTripleShotEnabled = true;
 
 
     float _timeToWait = 0.3f;
@@ -66,10 +66,11 @@ public class Player : MonoBehaviour
         _cooldownTimer = Time.time + _timeToWait;
     }
 
-    private void FireTripleShot() {/*
-        Instantiate(_laserPrefab, _topLaserPosition.transform.position, Quaternion.identity);
-        Instantiate(_laserPrefab, _leftLaserPosition.transform.position, Quaternion.identity);
-        Instantiate(_laserPrefab, _rightLaserPosition.transform.position, Quaternion.identity);*/
+    private void FireTripleShot()
+    {
+        _objectPool.GetPlayerLaser(_topLaserPosition.transform.position);
+        _objectPool.GetPlayerLaser(_leftLaserPosition.transform.position);
+        _objectPool.GetPlayerLaser(_rightLaserPosition.transform.position);
     }
     private void FireNormalShot() {
         _objectPool.GetPlayerLaser(_topLaserPosition.transform.position);
