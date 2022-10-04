@@ -60,8 +60,8 @@ public class Player : MonoBehaviour
         
         if (_isTripleShotEnabled)
             FireTripleShot();
-
-        FireNormalShot();
+        else
+            FireNormalShot();
         _cooldownTimer = Time.time + _timeToWait;
     }
 
