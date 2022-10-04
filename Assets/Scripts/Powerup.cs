@@ -11,6 +11,6 @@ public class Powerup : MonoBehaviour
 
     private void Update()
     {
-        
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
     }
 }
