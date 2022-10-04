@@ -23,14 +23,19 @@ public class Powerup : MonoBehaviour
         switch (_behavior) {
             case PowerupLogic.TripleShot:
                 Debug.Log("TripleShot");
+                Destroy(gameObject);
                 return;
             case PowerupLogic.Shield:
+                Destroy(gameObject);
                 return;
             case PowerupLogic.SpeedBoost:
+                Destroy(gameObject);
                 return;
             default:
+                Debug.LogError("No Behavior was detected");
                 return;
         }
+        
     }
 
 }
