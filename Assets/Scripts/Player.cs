@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     float _rightOutOfBounds = 11.1f;
     float _leftOutOfBounds = -11.2f;
 
-    bool _isTripleShotEnabled = true;
+    bool _isTripleShotEnabled = false;
 
 
     float _timeToWait = 0.3f;
