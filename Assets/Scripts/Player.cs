@@ -94,4 +94,14 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void TripleShotActive() { 
+        
+    }
+
+    IEnumerator PowerupCooldown(bool powerup, float cooldown) {
+        powerup = true;
+        yield return new WaitForSeconds(cooldown);
+        powerup = false;
+    }
 }
