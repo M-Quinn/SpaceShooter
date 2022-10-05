@@ -46,10 +46,10 @@ public class SpawnManager : MonoBehaviour
 
     private void ChanceToSpawnPowerup(Vector3 location) {
         float chance = Random.Range(0.0f, 1.0f);
-        if (chance >= 0.2f) {
+        if (chance <= 0.2f) {
             Instantiate(_tripleShotPrefab, location, Quaternion.identity);
         }
-        else if (chance >= 0.4) { 
+        else if (chance <= 0.4) { 
             
         }
     }
