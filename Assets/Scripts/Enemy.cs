@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     float _minX = -9.0f;
     float _maxX = 9.0f;
 
-    public static Action EnemyDiedToLaser;
+    public static Action<Vector3> EnemyDiedToLaser;
 
     // Update is called once per frame
     void Update()
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         else if (other.CompareTag("Laser")) {
             Debug.Log("Enemy Hit");
             Destroy(other.gameObject);
-            EnemyDiedToLaser?.Invoke();
+            EnemyDiedToLaser?.Invoke(transform.position);
             Destroy(gameObject);
         }
     }
