@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
         }
         else if (other.CompareTag("Laser")) {
             Debug.Log("Enemy Hit");
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             EnemyDiedToLaser?.Invoke(transform.position);
             Destroy(gameObject);
         }

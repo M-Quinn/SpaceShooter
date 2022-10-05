@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [Header("Powerups")]
+    [SerializeField] GameObject _tripleShotPrefab;
+    [Header("Enemy")]
     [SerializeField] GameObject _enemyContainer;
     [SerializeField] GameObject _enemyPrefab;
     float _secondsToWait = 5.0f;
@@ -18,10 +21,12 @@ public class SpawnManager : MonoBehaviour
     private void OnEnable()
     {
         Player.PlayerDied += () => _stopSpawning = true;
+        Enemy.EnemyDiedToLaser += ChanceToSpawnPowerup;
     }
     private void OnDisable()
     {
         Player.PlayerDied -= () => _stopSpawning = true;
+        Enemy.EnemyDiedToLaser -= ChanceToSpawnPowerup;
     }
 
     private void Start()
@@ -36,6 +41,16 @@ public class SpawnManager : MonoBehaviour
             temp.transform.parent = _enemyContainer.transform;
 
             yield return new WaitForSeconds(_secondsToWait);
+        }
+    }
+
+    private void ChanceToSpawnPowerup(Vector3 location) {
+        float chance = Random.Range(0.0f, 1.0f);
+        if (chance >= 0.2f) {
+            Instantiate(_tripleShotPrefab, location, Quaternion.identity);
+        }
+        else if (chance >= 0.4) { 
+            
         }
     }
 }
