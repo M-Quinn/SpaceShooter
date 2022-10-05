@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class Enemy : MonoBehaviour
     //Width of the screen
     float _minX = -9.0f;
     float _maxX = 9.0f;
+
+    public static Action EnemyDiedToLaser;
 
     // Update is called once per frame
     void Update()
@@ -35,6 +39,7 @@ public class Enemy : MonoBehaviour
         else if (other.CompareTag("Laser")) {
             Debug.Log("Enemy Hit");
             Destroy(other.gameObject);
+            EnemyDiedToLaser?.Invoke();
             Destroy(gameObject);
         }
     }
