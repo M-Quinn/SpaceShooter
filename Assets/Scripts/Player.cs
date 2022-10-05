@@ -24,7 +24,10 @@ public class Player : MonoBehaviour
     float _rightOutOfBounds = 11.1f;
     float _leftOutOfBounds = -11.2f;
 
+    //Powerups
     bool _isTripleShotEnabled = false;
+
+    float _tripleShotCooldown = 3.0f;
 
 
     float _timeToWait = 0.3f;
@@ -95,8 +98,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TripleShotActive() { 
-        
+    public void PowerupActivate(Powerup.PowerupLogic powerup) {
+        switch (powerup) {
+            case Powerup.PowerupLogic.TripleShot:
+                StartCoroutine(PowerupCooldown(_isTripleShotEnabled, _tripleShotCooldown));
+                return;
+            case Powerup.PowerupLogic.Shield:
+                return;
+            case Powerup.PowerupLogic.SpeedBoost:
+                return;
+            default:
+                Debug.LogError("No Behavior was detected");
+                return;
+        }
     }
 
     IEnumerator PowerupCooldown(bool powerup, float cooldown) {
