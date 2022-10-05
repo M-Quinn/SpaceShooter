@@ -20,22 +20,9 @@ public class Powerup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (_behavior) {
-            case PowerupLogic.TripleShot:
-                Debug.Log("TripleShot");
-                Destroy(gameObject);
-                return;
-            case PowerupLogic.Shield:
-                Destroy(gameObject);
-                return;
-            case PowerupLogic.SpeedBoost:
-                Destroy(gameObject);
-                return;
-            default:
-                Debug.LogError("No Behavior was detected");
-                return;
+        if (collision.TryGetComponent<Player>(out var player)) {
+            player.PowerupActivate(_behavior);
         }
-        
     }
 
 }
