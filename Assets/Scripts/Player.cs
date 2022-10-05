@@ -115,7 +115,6 @@ public class Player : MonoBehaviour
 
     IEnumerator PowerupCooldown(Action<bool> powerup, float cooldown) {
         powerup (true);
-        Debug.Log($"{powerup} vs {_isTripleShotEnabled}");
         yield return new WaitForSeconds(cooldown);
         powerup (false);
     }
