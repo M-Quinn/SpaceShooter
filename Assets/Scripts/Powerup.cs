@@ -20,8 +20,10 @@ public class Powerup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Player>(out var player)) {
+        if (collision.TryGetComponent<Player>(out var player))
+        {
             player.PowerupActivate(_behavior);
+            Destroy(gameObject);
         }
     }
 
