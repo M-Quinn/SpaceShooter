@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
     public void PowerupActivate(Powerup.PowerupLogic powerup) {
         switch (powerup) {
             case Powerup.PowerupLogic.TripleShot:
-                StartCoroutine(PowerupCooldown(_isTripleShotEnabled, _tripleShotCooldown));
+                StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _tripleShotCooldown));
                 return;
             case Powerup.PowerupLogic.Shield:
                 return;
@@ -113,9 +113,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator PowerupCooldown(bool powerup, float cooldown) {
-        powerup = true;
+    IEnumerator PowerupCooldown(Action<bool> powerup, float cooldown) {
+        powerup (true);
+        Debug.Log($"{powerup} vs {_isTripleShotEnabled}");
         yield return new WaitForSeconds(cooldown);
-        powerup = false;
+        powerup (false);
     }
 }
