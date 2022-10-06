@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     InputHandler _input;
     [SerializeField] PooledObjects _objectPool;
+    [SerializeField] GameObject _shield;
     [Header("Laser Positions To Spawn")]
     [SerializeField] GameObject _topLaserPosition;
     [SerializeField] GameObject _leftLaserPosition;
@@ -98,6 +99,7 @@ public class Player : MonoBehaviour
     public void Damage() {
         if (_isShieldEnabled) {
             _isShieldEnabled = false;
+            _shield.SetActive(_isShieldEnabled);
             return;
         }
         _lives -= 1;
@@ -114,6 +116,7 @@ public class Player : MonoBehaviour
                 return;
             case Powerup.PowerupLogic.Shield:
                 _isShieldEnabled = true;
+                _shield.SetActive(_isShieldEnabled);
                 return;
             case Powerup.PowerupLogic.SpeedBoost:
                 StartCoroutine(PowerupCooldown(result => _isSpeedBoostEnabled = result, _speedBoostCooldown));
