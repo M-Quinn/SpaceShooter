@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     [Header("Powerups")]
     [SerializeField] GameObject _tripleShotPrefab;
     [SerializeField] GameObject _speedBoostPrefab;
+    [SerializeField] GameObject _shieldBoostPrefab;
     [Header("Enemy")]
     [SerializeField] GameObject _enemyContainer;
     [SerializeField] GameObject _enemyPrefab;
@@ -47,11 +48,17 @@ public class SpawnManager : MonoBehaviour
 
     private void ChanceToSpawnPowerup(Vector3 location) {
         float chance = Random.Range(0.0f, 1.0f);
-        if (chance <= 0.2f) {
+        if (chance <= 0.2f)
+        {
             Instantiate(_tripleShotPrefab, location, Quaternion.identity);
         }
-        else if (chance <= 0.4) {
+        else if (chance <= 0.4)
+        {
             Instantiate(_speedBoostPrefab, location, Quaternion.identity);
         }
+        else if (chance <= .06) {
+            Instantiate(_shieldBoostPrefab, location, Quaternion.identity);
+        }
+
     }
 }
