@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4185282307652773323}
   - component: {fileID: 6955275286954924407}
   - component: {fileID: 5253171436082747388}
+  - component: {fileID: 7170492601912098986}
   m_Layer: 10
   m_Name: Powerup_Big
   m_TagString: Untagged
@@ -145,3 +146,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _behavior: 3
+--- !u!95 &7170492601912098986
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7132204443058547837}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ad9b20dbb121ea44b82a1aa9ae1ae75, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
