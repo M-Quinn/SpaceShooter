@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 
     //Powerups
     bool _isTripleShotEnabled = false;
+    bool _isSpeedBoostEnabled = false;
 
     float _tripleShotCooldown = 3.0f;
 
@@ -46,7 +47,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (_isSpeedBoostEnabled)
+            _speed *= 1.5f;
         transform.Translate(new Vector3(_input.Move.x, _input.Move.y, 0) * _speed * Time.deltaTime);
         Vector3 curPos = SetBounds(transform.position);
         transform.position = curPos;
@@ -102,10 +104,13 @@ public class Player : MonoBehaviour
         switch (powerup) {
             case Powerup.PowerupLogic.TripleShot:
                 StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _tripleShotCooldown));
+                Debug.Log("Triple Shot");
                 return;
             case Powerup.PowerupLogic.Shield:
+                Debug.Log("Shield");
                 return;
             case Powerup.PowerupLogic.SpeedBoost:
+                Debug.Log("Speed Boost");
                 return;
             default:
                 Debug.LogError("No Behavior was detected");
