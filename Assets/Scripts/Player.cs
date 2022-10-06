@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     //Powerups
     bool _isTripleShotEnabled = false;
     bool _isSpeedBoostEnabled = false;
+    bool _isShieldEnabled = false;
 
     float _tripleShotCooldown = 5.0f;
     float _speedBoostCooldown = 5.0f;
@@ -95,6 +96,10 @@ public class Player : MonoBehaviour
     }
 
     public void Damage() {
+        if (_isShieldEnabled) {
+            _isShieldEnabled = false;
+            return;
+        }
         _lives -= 1;
         if (_lives <= 0) {
             PlayerDied?.Invoke();
@@ -108,6 +113,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _tripleShotCooldown));
                 return;
             case Powerup.PowerupLogic.Shield:
+                _isShieldEnabled = true;
                 return;
             case Powerup.PowerupLogic.SpeedBoost:
                 StartCoroutine(PowerupCooldown(result => _isSpeedBoostEnabled = result, _speedBoostCooldown));
