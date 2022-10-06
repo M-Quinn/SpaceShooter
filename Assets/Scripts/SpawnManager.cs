@@ -6,6 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     [Header("Powerups")]
     [SerializeField] GameObject _tripleShotPrefab;
+    [SerializeField] GameObject _speedBoostPrefab;
     [Header("Enemy")]
     [SerializeField] GameObject _enemyContainer;
     [SerializeField] GameObject _enemyPrefab;
@@ -49,8 +50,8 @@ public class SpawnManager : MonoBehaviour
         if (chance <= 0.2f) {
             Instantiate(_tripleShotPrefab, location, Quaternion.identity);
         }
-        else if (chance <= 0.4) { 
-            
+        else if (chance <= 0.4) {
+            Instantiate(_speedBoostPrefab, location, Quaternion.identity);
         }
     }
 }
