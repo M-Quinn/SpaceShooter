@@ -31,9 +31,14 @@ public class Player : MonoBehaviour
     bool _isTripleShotEnabled = false;
     bool _isSpeedBoostEnabled = false;
     bool _isShieldEnabled = false;
+    bool _isBigEnabled = false;
+    bool _isSmallEnabled = false;
 
-    float _tripleShotCooldown = 5.0f;
-    float _speedBoostCooldown = 5.0f;
+    float _powerupCooldown = 5.0f;
+
+    Vector3 _bigScale = new Vector3(1, 1, 1);
+    Vector3 _smallScale = new Vector3(0.5f, 0.5f, 0.5f);
+    Vector3 _normalScale = new Vector3(0.7f, 0.7f, 0.7f);
 
 
     float _timeToWait = 0.3f;
@@ -52,6 +57,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetPlayerScale();
+
         _speed = _isSpeedBoostEnabled ? _boostSpeed : _normalSpeed;
         transform.Translate(new Vector3(_input.Move.x, _input.Move.y, 0) * _speed * Time.deltaTime);
         Vector3 curPos = SetBounds(transform.position);
@@ -63,6 +70,22 @@ public class Player : MonoBehaviour
             FireLaser();
         }
 
+    }
+
+    private void SetPlayerScale()
+    {
+        if (!_isSmallEnabled & !_isBigEnabled)
+        {
+            transform.localScale = _normalScale;
+        }
+        else if (_isBigEnabled)
+        {
+            transform.localScale = _bigScale;
+        }
+        else if (_isSmallEnabled)
+        {
+            transform.localScale = _smallScale;
+        }
     }
 
     private void FireLaser()
@@ -112,14 +135,20 @@ public class Player : MonoBehaviour
     public void PowerupActivate(Powerup.PowerupLogic powerup) {
         switch (powerup) {
             case Powerup.PowerupLogic.TripleShot:
-                StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _tripleShotCooldown));
+                StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _powerupCooldown));
                 return;
             case Powerup.PowerupLogic.Shield:
                 _isShieldEnabled = true;
                 _shield.SetActive(_isShieldEnabled);
                 return;
             case Powerup.PowerupLogic.SpeedBoost:
-                StartCoroutine(PowerupCooldown(result => _isSpeedBoostEnabled = result, _speedBoostCooldown));
+                StartCoroutine(PowerupCooldown(result => _isSpeedBoostEnabled = result, _powerupCooldown));
+                return;
+            case Powerup.PowerupLogic.Big:
+                StartCoroutine(PowerupCooldown(result => _isBigEnabled = result, _powerupCooldown));
+                return;
+            case Powerup.PowerupLogic.Small:
+                StartCoroutine(PowerupCooldown(result => _isSmallEnabled = result, _powerupCooldown));
                 return;
             default:
                 Debug.LogError("No Behavior was detected");
