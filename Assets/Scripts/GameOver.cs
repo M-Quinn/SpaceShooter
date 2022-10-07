@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _text_GameOver;
+    [SerializeField] GameObject _text_GameOver;
+    [SerializeField] GameObject _text_Restart;
 
     private void OnEnable()
     {
@@ -17,7 +15,8 @@ public class GameOver : MonoBehaviour
     }
 
     private void HandleGameOver() {
-        _text_GameOver.gameObject.SetActive(true);
+        _text_GameOver.SetActive(true);
+        _text_Restart.SetActive(true);
     }
 
 }
