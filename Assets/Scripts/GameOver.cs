@@ -1,9 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    [Header("Text Objects")]
     [SerializeField] GameObject _text_GameOver;
     [SerializeField] GameObject _text_Restart;
+    [Header("Dependencies")]
+    [SerializeField] InputHandler _input;
+
+    bool _isGameOver = false;
 
     private void OnEnable()
     {
@@ -14,7 +20,17 @@ public class GameOver : MonoBehaviour
         Player.PlayerDied -= HandleGameOver;
     }
 
+    private void Update()
+    {
+        if (!_isGameOver)
+            return;
+        if (_input.Restart) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
     private void HandleGameOver() {
+        _isGameOver = true;
         _text_GameOver.SetActive(true);
         _text_Restart.SetActive(true);
     }

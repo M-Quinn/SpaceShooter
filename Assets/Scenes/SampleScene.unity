@@ -615,6 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text_GameOver: {fileID: 1673802740}
   _text_Restart: {fileID: 1571067678}
+  _input: {fileID: 1589903483}
 --- !u!1 &319655328
 GameObject:
   m_ObjectHideFlags: 0
