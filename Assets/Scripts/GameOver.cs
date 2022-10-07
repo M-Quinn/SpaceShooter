@@ -29,6 +29,7 @@ public class GameOver : MonoBehaviour
     }
 
     private void HandleGameOver() {
+        _isGameOver = true;
         _text_GameOver.SetActive(true);
         _text_Restart.SetActive(true);
     }
