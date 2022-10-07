@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &98837579
 RectTransform:
   m_ObjectHideFlags: 0
@@ -600,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &319655329
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1112,7 +1112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &797872484
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1356,7 +1356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1000161078
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2082,6 +2082,10 @@ MonoBehaviour:
   _topLaserPosition: {fileID: 3624789069366276081}
   _leftLaserPosition: {fileID: 3624789069399684496}
   _rightLaserPosition: {fileID: 3624789070276220970}
+  _img_TripleShot: {fileID: 1000161079}
+  _img_Speed: {fileID: 98837580}
+  _img_Big: {fileID: 319655330}
+  _img_Small: {fileID: 797872485}
 --- !u!1 &1942829119
 GameObject:
   m_ObjectHideFlags: 0

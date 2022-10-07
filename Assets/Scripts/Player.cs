@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _topLaserPosition;
     [SerializeField] GameObject _leftLaserPosition;
     [SerializeField] GameObject _rightLaserPosition;
+    [Header("Powerup UI")]
+    [SerializeField] Image _img_TripleShot;
+    [SerializeField] Image _img_Speed;
+    [SerializeField] Image _img_Big;
+    [SerializeField] Image _img_Small;
 
 
     int _lives = 3;
@@ -135,20 +141,20 @@ public class Player : MonoBehaviour
     public void PowerupActivate(Powerup.PowerupLogic powerup) {
         switch (powerup) {
             case Powerup.PowerupLogic.TripleShot:
-                StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _powerupCooldown));
+                StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _img_TripleShot, _powerupCooldown));
                 return;
             case Powerup.PowerupLogic.Shield:
                 _isShieldEnabled = true;
                 _shield.SetActive(_isShieldEnabled);
                 return;
             case Powerup.PowerupLogic.SpeedBoost:
-                StartCoroutine(PowerupCooldown(result => _isSpeedBoostEnabled = result, _powerupCooldown));
+                StartCoroutine(PowerupCooldown(result => _isSpeedBoostEnabled = result, _img_Speed, _powerupCooldown));
                 return;
             case Powerup.PowerupLogic.Big:
-                StartCoroutine(PowerupCooldown(result => _isBigEnabled = result, _powerupCooldown));
+                StartCoroutine(PowerupCooldown(result => _isBigEnabled = result, _img_Big, _powerupCooldown));
                 return;
             case Powerup.PowerupLogic.Small:
-                StartCoroutine(PowerupCooldown(result => _isSmallEnabled = result, _powerupCooldown));
+                StartCoroutine(PowerupCooldown(result => _isSmallEnabled = result, _img_Small, _powerupCooldown));
                 return;
             default:
                 Debug.LogError("No Behavior was detected");
@@ -156,9 +162,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator PowerupCooldown(Action<bool> powerup, float cooldown) {
+    IEnumerator PowerupCooldown(Action<bool> powerup, Image ui_Image, float cooldown) {
         powerup (true);
-        yield return new WaitForSeconds(cooldown);
+        ui_Image.fillAmount = 1.0f;
+        ui_Image.gameObject.SetActive(true);
+        float timer = Time.time + cooldown;
+        while (Time.time <= timer) {
+            ui_Image.fillAmount = (timer - Time.time) / cooldown;
+            Debug.Log(Time.time - timer);
+            yield return null;
+        }
+        ui_Image.gameObject.SetActive(false);
         powerup (false);
     }
 }
