@@ -613,8 +613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87fbebcfb493f4db96eb264e52517a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text_GameOver: {fileID: 0}
-  _text_Restart: {fileID: 0}
+  _text_GameOver: {fileID: 1673802740}
+  _text_Restart: {fileID: 1571067678}
 --- !u!1 &319655328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,6 +2082,7 @@ MonoBehaviour:
   _playerInput: {fileID: 1589903484}
   Fire: 0
   Move: {x: 0, y: 0}
+  Restart: 0
 --- !u!114 &1589903484
 MonoBehaviour:
   m_ObjectHideFlags: 0
