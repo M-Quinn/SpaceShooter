@@ -169,7 +169,6 @@ public class Player : MonoBehaviour
         float timer = Time.time + cooldown;
         while (Time.time <= timer) {
             ui_Image.fillAmount = (timer - Time.time) / cooldown;
-            Debug.Log(Time.time - timer);
             yield return null;
         }
         ui_Image.gameObject.SetActive(false);
