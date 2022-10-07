@@ -22,8 +22,17 @@ public class Powerup : MonoBehaviour
     {
         if (collision.TryGetComponent<Player>(out var player))
         {
-            player.PowerupActivate(_behavior);
-            Destroy(gameObject);
+            if(player.PowerupActivate(_behavior))
+                Destroy(gameObject);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        //If the powerup couldn't be pickedup on enter
+        if (collision.TryGetComponent<Player>(out var player))
+        {
+            if (player.PowerupActivate(_behavior))
+                Destroy(gameObject);
         }
     }
 

@@ -138,27 +138,37 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PowerupActivate(Powerup.PowerupLogic powerup) {
+    public bool PowerupActivate(Powerup.PowerupLogic powerup) {
         switch (powerup) {
             case Powerup.PowerupLogic.TripleShot:
+                if (_isTripleShotEnabled)
+                    return false;
                 StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _img_TripleShot, _powerupCooldown));
-                return;
+                return true;
             case Powerup.PowerupLogic.Shield:
+                if (_isShieldEnabled)
+                    return false;
                 _isShieldEnabled = true;
                 _shield.SetActive(_isShieldEnabled);
-                return;
+                return true;
             case Powerup.PowerupLogic.SpeedBoost:
+                if (_isSpeedBoostEnabled)
+                    return false;
                 StartCoroutine(PowerupCooldown(result => _isSpeedBoostEnabled = result, _img_Speed, _powerupCooldown));
-                return;
+                return true;
             case Powerup.PowerupLogic.Big:
+                if (_isBigEnabled)
+                    return false;
                 StartCoroutine(PowerupCooldown(result => _isBigEnabled = result, _img_Big, _powerupCooldown));
-                return;
+                return true;
             case Powerup.PowerupLogic.Small:
+                if (_isSmallEnabled)
+                    return false;
                 StartCoroutine(PowerupCooldown(result => _isSmallEnabled = result, _img_Small, _powerupCooldown));
-                return;
+                return true;
             default:
                 Debug.LogError("No Behavior was detected");
-                return;
+                return false;
         }
     }
 
