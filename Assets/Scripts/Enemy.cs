@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     float _minX = -9.0f;
     float _maxX = 9.0f;
 
+    int pointsForDestroying = 10;
+
     public static Action<Vector3> EnemyDiedToLaser;
 
     // Update is called once per frame
@@ -40,6 +42,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Enemy Hit");
             other.gameObject.SetActive(false);
             EnemyDiedToLaser?.Invoke(transform.position);
+            Score.AddToScore?.Invoke(pointsForDestroying);
             Destroy(gameObject);
         }
     }
