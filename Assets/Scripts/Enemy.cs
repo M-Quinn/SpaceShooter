@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("Damage Player");
             if (other.TryGetComponent<Player>(out var player)) {
-                player.Damage();
+                player.TakeHit();
             }
             Destroy(gameObject);
         }

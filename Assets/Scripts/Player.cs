@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     InputHandler _input;
     [SerializeField] PooledObjects _objectPool;
     [SerializeField] GameObject _shield;
+    [SerializeField] Health _health;
     [Header("Laser Positions To Spawn")]
     [SerializeField] GameObject _topLaserPosition;
     [SerializeField] GameObject _leftLaserPosition;
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] Image _img_Small;
 
 
-    int _lives = 3;
+    
 
     float _speed;
     float _normalSpeed = 5.0f;
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
     float _timeToWait = 0.3f;
     float _cooldownTimer;
 
-    public static event Action PlayerDied;
+    public static Action PlayerDied;
 
     // Start is called before the first frame update
     void Start()
@@ -125,17 +126,13 @@ public class Player : MonoBehaviour
         return curPos;
     }
 
-    public void Damage() {
+    public void TakeHit() {
         if (_isShieldEnabled) {
             _isShieldEnabled = false;
             _shield.SetActive(_isShieldEnabled);
             return;
         }
-        _lives -= 1;
-        if (_lives <= 0) {
-            PlayerDied?.Invoke();
-            Destroy(gameObject);
-        }
+        _health.UpdateHealth(-1);
     }
 
     public bool PowerupActivate(Powerup.PowerupLogic powerup) {
