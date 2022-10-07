@@ -9,7 +9,7 @@ public class GameOver : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] InputHandler _input;
 
-    bool _isGameOver = false;
+    bool _isGameOver;
 
     private void OnEnable()
     {
@@ -24,13 +24,11 @@ public class GameOver : MonoBehaviour
     {
         if (!_isGameOver)
             return;
-        if (_input.Restart) {
+        if (_input.Restart)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
     }
 
     private void HandleGameOver() {
-        _isGameOver = true;
         _text_GameOver.SetActive(true);
         _text_Restart.SetActive(true);
     }
