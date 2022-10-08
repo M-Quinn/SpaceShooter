@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
@@ -13,6 +14,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] CircleCollider2D _collider;
     [SerializeField] new Transform transform;//Just replaces every transform with child
+    [SerializeField] TextMeshProUGUI _text_Wave;
 
     public static Action StartNextRound;
 
@@ -41,5 +43,9 @@ public class Asteroid : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         Destroy(explosion);
         Destroy(gameObject);
+    }
+
+    public void SetWaveText(int waveNum) {
+        _text_Wave.text = "WAVE " + waveNum.ToString();
     }
 }
