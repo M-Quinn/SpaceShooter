@@ -29,6 +29,6 @@ public class Background : MonoBehaviour
     }
 
     public void IncreaseSpeed() {
-        _speed += 0.02f;
+        _speed += Random.Range(0.005f,0.02f);
     }
 }

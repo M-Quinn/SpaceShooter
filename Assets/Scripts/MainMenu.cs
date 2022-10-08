@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Background[] _backgrounds;
     [SerializeField] Image _fadeOutImage;
 
-    float _delay = 2.5f;
+    float _delay = 1.7f;
 
     public void StartGame() {
         _anim.SetTrigger("Exit");
