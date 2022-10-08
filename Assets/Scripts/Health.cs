@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
             if (gameManager.GetGameType() == GameType.pacifist) { 
                 _maxLives = 1;
                 _lives = 1;
+                PlayerIsAboutToDie(true);
             }
         }
 
