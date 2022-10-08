@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _playerSprite;
+    [SerializeField] GameObject[] _damageVFXs;
     int _maxLives = 3;
     int _lives = 3;
     bool _isAboutToDie;
@@ -25,6 +26,7 @@ public class Health : MonoBehaviour
 
     public void UpdateHealth(int amount) {
         _lives = Mathf.Clamp(_lives += amount, 0, _maxLives);
+        _damageVFXs[Random.Range(0, 2)].SetActive(true);
         if (_isAboutToDie && _lives > 1) {
             PlayerIsAboutToDie(false);
         }
@@ -38,6 +40,9 @@ public class Health : MonoBehaviour
         }
     }
     public void PlayerIsAboutToDie(bool isAboutToDie) {
+        foreach (GameObject go in _damageVFXs) {
+            go.SetActive(true);
+        }
         _isAboutToDie = isAboutToDie;
         if (_isAboutToDie)
             StartCoroutine(RedFlash());

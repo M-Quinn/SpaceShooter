@@ -443,6 +443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Damage_right
       objectReference: {fileID: 0}
+    - target: {fileID: 7019656698445128916, guid: 004d7b55173765245be6f001585e3d81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004d7b55173765245be6f001585e3d81, type: 3}
 --- !u!1 &157766219
@@ -1247,6 +1251,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &652201286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7019656698445128916, guid: 004d7b55173765245be6f001585e3d81, type: 3}
+  m_PrefabInstance: {fileID: 141423072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &652201287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7019656698445128873, guid: 004d7b55173765245be6f001585e3d81, type: 3}
@@ -1951,6 +1960,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087564575}
   m_CullTransparentMesh: 1
+--- !u!1 &1286011064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7019656698445128916, guid: 004d7b55173765245be6f001585e3d81, type: 3}
+  m_PrefabInstance: {fileID: 1736487523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1286011065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7019656698445128873, guid: 004d7b55173765245be6f001585e3d81, type: 3}
@@ -2737,6 +2751,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSprite: {fileID: 824155116}
+  _damageVFXs:
+  - {fileID: 1286011064}
+  - {fileID: 652201286}
 --- !u!4 &1731979986
 Transform:
   m_ObjectHideFlags: 0
@@ -2831,6 +2848,10 @@ PrefabInstance:
     - target: {fileID: 7019656698445128916, guid: 004d7b55173765245be6f001585e3d81, type: 3}
       propertyPath: m_Name
       value: Damage_left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019656698445128916, guid: 004d7b55173765245be6f001585e3d81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004d7b55173765245be6f001585e3d81, type: 3}
