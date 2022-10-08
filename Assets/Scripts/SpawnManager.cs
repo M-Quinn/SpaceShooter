@@ -35,6 +35,7 @@ public class SpawnManager : MonoBehaviour
     {
         Player.PlayerDied += () => _stopSpawning = true;
         Enemy.EnemyDiedToLaser += ChanceToSpawnPowerup;
+        Enemy.EnemyBorn += () => _amountOfEnemiesLeft++;
         Enemy.EnemyDied += () => _amountOfEnemiesLeft--;
         GameStart.GameIsReady += SpawnAsteroid;
         Asteroid.StartNextRound += () => StartCoroutine(SpawnCoroutine());
@@ -43,6 +44,7 @@ public class SpawnManager : MonoBehaviour
     {
         Player.PlayerDied -= () => _stopSpawning = true;
         Enemy.EnemyDiedToLaser -= ChanceToSpawnPowerup;
+        Enemy.EnemyBorn -= () => _amountOfEnemiesLeft++;
         Enemy.EnemyDied -= () => _amountOfEnemiesLeft--;
         GameStart.GameIsReady -= SpawnAsteroid;
         Asteroid.StartNextRound -= () => StartCoroutine(SpawnCoroutine());
@@ -80,19 +82,18 @@ public class SpawnManager : MonoBehaviour
             temp.GetComponent<Enemy>().SetGameType(_gameType);
             temp.transform.parent = _enemyContainer.transform;
             _totalEnemiesSpawned_Wave++;
-            _amountOfEnemiesLeft++;
             if (_totalEnemiesSpawned_Wave >= _amountOfEnemiesToSpawn)
                 allEnemiesSpawned = true;
             Debug.Log($"totalSpawned {_totalEnemiesSpawned_Wave} vs amountToSpawn {_amountOfEnemiesToSpawn} vs amount left {_amountOfEnemiesLeft}");
             yield return new WaitForSeconds(_secondsToWait);
             _secondsToWait -= _secondsToWait * 0.02f;
         }
-        StartCoroutine(CheckForEndOfWave());
-    }
-    IEnumerator CheckForEndOfWave() {
         bool isWaveOver = false;
-        while (!isWaveOver) {
-            if (_amountOfEnemiesLeft <= 0) {
+        while (!isWaveOver)
+        {
+            Debug.Log($"totalSpawned {_totalEnemiesSpawned_Wave} vs amountToSpawn {_amountOfEnemiesToSpawn} vs amount left {_amountOfEnemiesLeft}");
+            if (_amountOfEnemiesLeft <= 0)
+            {
                 isWaveOver = true;
             }
             yield return null;

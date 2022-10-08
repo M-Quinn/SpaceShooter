@@ -22,8 +22,13 @@ public class Enemy : MonoBehaviour
 
     public static Action<Vector3> EnemyDiedToLaser; //Supplies chance to spawn powerup
     public static Action EnemyDied;                 //Used to count how many enemies are left
+    public static Action EnemyBorn;                 //Used to count how many enemies are left
 
     GameType _gameType;
+    private void Start()
+    {
+        EnemyBorn?.Invoke();
+    }
 
     // Update is called once per frame
     void Update()
