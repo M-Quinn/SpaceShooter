@@ -28,7 +28,8 @@ public class SpawnManager : MonoBehaviour
     {
         Player.PlayerDied += () => _stopSpawning = true;
         Enemy.EnemyDiedToLaser += ChanceToSpawnPowerup;
-        GameStart.GameIsReady += ()=> StartCoroutine(SpawnCoroutine());
+        GameStart.GameIsReady += ()=> StartCoroutine(SpawnCoroutine());//Change to spawn asteroid then on asteroid destruction, start coroutine
+        //Asteroid.StartNextRound +=
     }
     private void OnDisable()
     {
@@ -47,6 +48,8 @@ public class SpawnManager : MonoBehaviour
 
 
     IEnumerator SpawnCoroutine() {
+        //Increase speed here
+        //Increase amount to spawn here
         while (!_stopSpawning) {
             positionToSpawn = new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, transform.position.z);
             GameObject temp = Instantiate(_enemyPrefab, positionToSpawn, Quaternion.identity);
