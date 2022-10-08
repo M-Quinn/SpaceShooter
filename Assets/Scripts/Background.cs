@@ -29,6 +29,6 @@ public class Background : MonoBehaviour
     }
 
     public void IncreaseSpeed() {
-        _speed *= 1.2f;
+        _speed *= 1.2f*Time.deltaTime;
     }
 }
