@@ -17,12 +17,17 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator LoadLevelAsync(float delay) {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        asyncLoad.allowSceneActivation = false;
         var timer = Time.time + delay;
-        while (!asyncLoad.isDone&&(Time.time>=timer)) {
+        while (!asyncLoad.isDone && (Time.time<=timer)) {
+            Debug.Log($"{Time.time} vs {timer}");
+            Debug.Log(asyncLoad.isDone);
             foreach (Background bg in _backgrounds) {
                 bg.IncreaseSpeed();
             }
             yield return null;
         }
+        Debug.Log("Loop exited");
+        asyncLoad.allowSceneActivation = true;
     }
 }
