@@ -1095,7 +1095,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4687924906114577193}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4687924906441912894}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4687924906114577193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,6 +1261,7 @@ GameObject:
   - component: {fileID: 4687924906441912883}
   - component: {fileID: 4687924906441912882}
   - component: {fileID: 4687924906441912893}
+  - component: {fileID: 4687924906441912894}
   m_Layer: 5
   m_Name: Canvas-MainMenu
   m_TagString: Untagged
@@ -1273,6 +1286,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4687924906441912894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4687924906441912892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e97a4592aead6468330eb8dae0ef3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 4687924906530607224}
+  _backgrounds:
+  - {fileID: 172609504161528951}
+  - {fileID: 172609502984652946}
+  - {fileID: 172609502996562507}
+  - {fileID: 172609502642259602}
 --- !u!114 &4687924906530607220
 MonoBehaviour:
   m_ObjectHideFlags: 0
