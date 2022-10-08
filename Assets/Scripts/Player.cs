@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
     float _timeToWait = 0.3f;
     float _cooldownTimer;
 
+    GameType _gameType;
+
     public static Action PlayerDied;
 
     // Start is called before the first frame update
@@ -59,6 +61,11 @@ public class Player : MonoBehaviour
         _cooldownTimer = Time.time + _timeToWait;
 
         transform.position = new Vector3(0, 0, 0);
+        var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (gameManager == null)
+            Debug.LogError($"{this.name} Couldn't find the GameManager");
+        else
+            _gameType = gameManager.GetGameType();
     }
 
     // Update is called once per frame
@@ -74,7 +81,8 @@ public class Player : MonoBehaviour
 
         if (_input.Fire && Time.time >= _cooldownTimer)
         {
-            FireLaser();
+            if(_gameType==GameType.normal)
+                FireLaser();
         }
 
     }

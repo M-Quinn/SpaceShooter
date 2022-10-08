@@ -18,12 +18,18 @@ public class Enemy : MonoBehaviour
 
     public static Action<Vector3> EnemyDiedToLaser;
 
+    GameType _gameType;
+
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
         //when hit bottom respawn at top at random x
         if (transform.position.y < _bottomOfTheScreen) {
+            if (_gameType == GameType.pacifist) {
+                Score.AddToScore?.Invoke(pointsForDestroying);
+                Destroy(gameObject);
+            }
             transform.position = new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, transform.position.z);
         }
     }
@@ -45,5 +51,9 @@ public class Enemy : MonoBehaviour
             Score.AddToScore?.Invoke(pointsForDestroying);
             Destroy(gameObject);
         }
+    }
+
+    public void SetGameType(GameType x) {
+        _gameType = x;
     }
 }

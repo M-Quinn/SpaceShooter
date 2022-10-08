@@ -6,13 +6,23 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] GameManager _gameManager;
     [SerializeField] Animator _anim;
     [SerializeField] Background[] _backgrounds;
     [SerializeField] Image _fadeOutImage;
 
     float _delay = 1.7f;
 
-    public void StartGame() {
+    public void StartNormalGame() {
+        _gameManager.SetGameType(GameType.normal);
+        StartGame();
+    }
+    public void StartPacifistGame() {
+        _gameManager.SetGameType(GameType.pacifist);
+        StartGame();
+    }
+    private void StartGame()
+    {
         _anim.SetTrigger("Exit");
         StartCoroutine(LoadLevelAsync(_delay));
     }

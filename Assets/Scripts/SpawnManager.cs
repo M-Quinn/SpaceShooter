@@ -22,6 +22,8 @@ public class SpawnManager : MonoBehaviour
     float _maxX = 9.0f;
     bool _stopSpawning = false;
 
+    GameType _gameType;
+
     private void OnEnable()
     {
         Player.PlayerDied += () => _stopSpawning = true;
@@ -34,15 +36,25 @@ public class SpawnManager : MonoBehaviour
         Enemy.EnemyDiedToLaser -= ChanceToSpawnPowerup;
         GameStart.GameIsReady -= () => StartCoroutine(SpawnCoroutine());
     }
+    private void Start()
+    {
+        var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (gameManager == null)
+            Debug.LogError($"{this.name} Couldn't find the GameManager");
+        else
+            _gameType = gameManager.GetGameType();
+    }
 
 
     IEnumerator SpawnCoroutine() {
         while (!_stopSpawning) {
             positionToSpawn = new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, transform.position.z);
             GameObject temp = Instantiate(_enemyPrefab, positionToSpawn, Quaternion.identity);
+            temp.GetComponent<Enemy>().SetGameType(_gameType);
             temp.transform.parent = _enemyContainer.transform;
 
             yield return new WaitForSeconds(_secondsToWait);
+            _secondsToWait -= _secondsToWait * 0.01f;
         }
     }
 
