@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 2191440408297909013}
   - component: {fileID: 8995702313169952839}
   - component: {fileID: 421910846}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyTurnLeft0000_00000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
