@@ -13,6 +13,8 @@ public class SpawnManager : MonoBehaviour
     [Header("Enemy")]
     [SerializeField] GameObject _enemyContainer;
     [SerializeField] GameObject _enemyPrefab;
+    [Header("Asteroid")]
+    [SerializeField] GameObject _asteroidPrefab;
     float _secondsToWait = 5.0f;
     Vector3 positionToSpawn = Vector3.zero;
 
@@ -22,21 +24,30 @@ public class SpawnManager : MonoBehaviour
     float _maxX = 9.0f;
     bool _stopSpawning = false;
 
+    int _waveNumber = 0;
+    int _amountOfEnemiesToSpawn = 5;    //Start on 5
+    int _totalEnemiesSpawned_Wave = 0;  //Counts the enemies spawned;
+    int _amountOfEnemiesLeft;
+
     GameType _gameType;
 
     private void OnEnable()
     {
         Player.PlayerDied += () => _stopSpawning = true;
         Enemy.EnemyDiedToLaser += ChanceToSpawnPowerup;
-        GameStart.GameIsReady += ()=> StartCoroutine(SpawnCoroutine());//Change to spawn asteroid then on asteroid destruction, start coroutine
-        //Asteroid.StartNextRound +=
+        Enemy.EnemyDied += () => _amountOfEnemiesLeft--;
+        GameStart.GameIsReady += SpawnAsteroid;
+        Asteroid.StartNextRound += () => StartCoroutine(SpawnCoroutine());
     }
     private void OnDisable()
     {
         Player.PlayerDied -= () => _stopSpawning = true;
         Enemy.EnemyDiedToLaser -= ChanceToSpawnPowerup;
-        GameStart.GameIsReady -= () => StartCoroutine(SpawnCoroutine());
+        Enemy.EnemyDied -= () => _amountOfEnemiesLeft--;
+        GameStart.GameIsReady -= SpawnAsteroid;
+        Asteroid.StartNextRound -= () => StartCoroutine(SpawnCoroutine());
     }
+
     private void Start()
     {
         var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -46,15 +57,26 @@ public class SpawnManager : MonoBehaviour
             _gameType = gameManager.GetGameType();
     }
 
+    private void SpawnAsteroid() {
+        _waveNumber++;
+        _amountOfEnemiesToSpawn += (_amountOfEnemiesToSpawn / 2);
+        GameObject asteroid = Instantiate(_asteroidPrefab, new Vector3(Random.Range(-2, 3), 8, 0), Quaternion.identity);
+        asteroid.GetComponent<Asteroid>().SetWaveText(_waveNumber);
+        
+    }
 
     IEnumerator SpawnCoroutine() {
+        _totalEnemiesSpawned_Wave = 0;
+        bool allEnemiesSpawned = false;
         //Increase speed here
-        //Increase amount to spawn here
-        while (!_stopSpawning) {
+        while (!_stopSpawning || !allEnemiesSpawned) {
             positionToSpawn = new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, transform.position.z);
             GameObject temp = Instantiate(_enemyPrefab, positionToSpawn, Quaternion.identity);
             temp.GetComponent<Enemy>().SetGameType(_gameType);
             temp.transform.parent = _enemyContainer.transform;
+            _totalEnemiesSpawned_Wave++;
+            if (_totalEnemiesSpawned_Wave >= _amountOfEnemiesToSpawn)
+                allEnemiesSpawned = true;
 
             yield return new WaitForSeconds(_secondsToWait);
             _secondsToWait -= _secondsToWait * 0.02f;
