@@ -60,6 +60,11 @@ public class SpawnManager : MonoBehaviour
     private void SpawnAsteroid() {
         _waveNumber++;
         _amountOfEnemiesToSpawn += (_amountOfEnemiesToSpawn / 2);
+        if (_gameType == GameType.pacifist)
+        {
+            StartCoroutine(SpawnCoroutine());
+            return;
+        }
         GameObject asteroid = Instantiate(_asteroidPrefab, new Vector3(Random.Range(-2, 3), 8, 0), Quaternion.identity);
         asteroid.GetComponent<Asteroid>().SetWaveText(_waveNumber);
         
@@ -69,18 +74,30 @@ public class SpawnManager : MonoBehaviour
         _totalEnemiesSpawned_Wave = 0;
         bool allEnemiesSpawned = false;
         //Increase speed here
-        while (!_stopSpawning || !allEnemiesSpawned) {
+        while (!_stopSpawning && !allEnemiesSpawned) {
             positionToSpawn = new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, transform.position.z);
             GameObject temp = Instantiate(_enemyPrefab, positionToSpawn, Quaternion.identity);
             temp.GetComponent<Enemy>().SetGameType(_gameType);
             temp.transform.parent = _enemyContainer.transform;
             _totalEnemiesSpawned_Wave++;
+            _amountOfEnemiesLeft++;
             if (_totalEnemiesSpawned_Wave >= _amountOfEnemiesToSpawn)
                 allEnemiesSpawned = true;
-
+            Debug.Log($"totalSpawned {_totalEnemiesSpawned_Wave} vs amountToSpawn {_amountOfEnemiesToSpawn} vs amount left {_amountOfEnemiesLeft}");
             yield return new WaitForSeconds(_secondsToWait);
             _secondsToWait -= _secondsToWait * 0.02f;
         }
+        StartCoroutine(CheckForEndOfWave());
+    }
+    IEnumerator CheckForEndOfWave() {
+        bool isWaveOver = false;
+        while (!isWaveOver) {
+            if (_amountOfEnemiesLeft <= 0) {
+                isWaveOver = true;
+            }
+            yield return null;
+        }
+        SpawnAsteroid();
     }
 
     private void ChanceToSpawnPowerup(Vector3 location) {

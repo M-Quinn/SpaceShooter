@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
             if (_gameType == GameType.pacifist) {
                 Score.AddToScore?.Invoke(pointsForDestroying);
                 HandleDeath();
+                return;
             }
             transform.position = new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, transform.position.z);
         }
