@@ -16,12 +16,6 @@ public class Asteroid : MonoBehaviour
 
     public static Action StartNextRound;
 
-    private void Awake()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _collider = GetComponent<CircleCollider2D>();
-    }
-
     // Update is called once per frame
     void Update()
     {

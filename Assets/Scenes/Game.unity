@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &62682477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,6 +964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 357427773}
   - component: {fileID: 357427772}
+  - component: {fileID: 357427774}
   m_Layer: 11
   m_Name: Asteroid
   m_TagString: Untagged
@@ -985,7 +986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosionVFX: {fileID: 6969402610797765628, guid: 1cbc0808f1ceb2d45a041ea9088f57d1, type: 3}
   _spriteRenderer: {fileID: 646621473}
-  _collider: {fileID: 646621476}
+  _collider: {fileID: 357427774}
   transform: {fileID: 646621474}
 --- !u!4 &357427773
 Transform:
@@ -1003,6 +1004,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &357427774
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357427771}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.061734676}
+  serializedVersion: 2
+  m_Radius: 1.1812587
 --- !u!1 &545250800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1164,6 @@ GameObject:
   m_Component:
   - component: {fileID: 646621474}
   - component: {fileID: 646621473}
-  - component: {fileID: 646621476}
   - component: {fileID: 646621477}
   m_Layer: 11
   m_Name: Asteroid Object
@@ -1221,22 +1237,6 @@ Transform:
   m_Father: {fileID: 357427773}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &646621476
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646621472}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.061734676}
-  serializedVersion: 2
-  m_Radius: 1.1812587
 --- !u!50 &646621477
 Rigidbody2D:
   serializedVersion: 4
@@ -1914,8 +1914,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.73}
-  m_SizeDelta: {x: 20, y: 5}
+  m_AnchoredPosition: {x: 0, y: 2.3151}
+  m_SizeDelta: {x: 20, y: 3.2901}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1063563510
 MonoBehaviour:
@@ -1937,10 +1937,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sample text
+  m_text: WAVE 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 271e76c5b2fe41b408907732090fc900, type: 2}
+  m_sharedMaterial: {fileID: 3448965105866763663, guid: 271e76c5b2fe41b408907732090fc900, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1964,15 +1964,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 38.56
+  m_fontSizeBase: 38.56
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2028,7 +2028,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 3448965105866763663, guid: 271e76c5b2fe41b408907732090fc900, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
