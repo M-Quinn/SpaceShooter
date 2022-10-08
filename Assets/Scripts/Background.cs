@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
+    [SerializeField] float _speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.down *Time.deltaTime* _speed);
     }
 }
