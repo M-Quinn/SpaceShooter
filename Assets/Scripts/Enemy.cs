@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Damage Player");
             if (other.TryGetComponent<Player>(out var player)) {
                 player.TakeHit();
             }
@@ -59,7 +58,6 @@ public class Enemy : MonoBehaviour
         }
         else if (other.CompareTag("Laser"))
         {
-            Debug.Log("Enemy Hit");
             other.gameObject.SetActive(false);
             EnemyDiedToLaser?.Invoke(transform.position);
             Score.AddToScore?.Invoke(pointsForDestroying);

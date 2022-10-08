@@ -84,14 +84,12 @@ public class SpawnManager : MonoBehaviour
             _totalEnemiesSpawned_Wave++;
             if (_totalEnemiesSpawned_Wave >= _amountOfEnemiesToSpawn)
                 allEnemiesSpawned = true;
-            Debug.Log($"totalSpawned {_totalEnemiesSpawned_Wave} vs amountToSpawn {_amountOfEnemiesToSpawn} vs amount left {_amountOfEnemiesLeft}");
             yield return new WaitForSeconds(_secondsToWait);
             _secondsToWait -= _secondsToWait * 0.02f;
         }
         bool isWaveOver = false;
         while (!isWaveOver)
         {
-            Debug.Log($"totalSpawned {_totalEnemiesSpawned_Wave} vs amountToSpawn {_amountOfEnemiesToSpawn} vs amount left {_amountOfEnemiesLeft}");
             if (_amountOfEnemiesLeft <= 0)
             {
                 isWaveOver = true;
