@@ -29,6 +29,6 @@ public class Background : MonoBehaviour
     }
 
     public void IncreaseSpeed() {
-        _speed += 0.08f;
+        _speed += 0.02f;
     }
 }

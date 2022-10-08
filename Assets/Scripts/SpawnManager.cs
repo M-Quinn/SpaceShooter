@@ -26,17 +26,15 @@ public class SpawnManager : MonoBehaviour
     {
         Player.PlayerDied += () => _stopSpawning = true;
         Enemy.EnemyDiedToLaser += ChanceToSpawnPowerup;
+        GameStart.GameIsReady += ()=> StartCoroutine(SpawnCoroutine());
     }
     private void OnDisable()
     {
         Player.PlayerDied -= () => _stopSpawning = true;
         Enemy.EnemyDiedToLaser -= ChanceToSpawnPowerup;
+        GameStart.GameIsReady -= () => StartCoroutine(SpawnCoroutine());
     }
 
-    private void Start()
-    {
-        StartCoroutine(SpawnCoroutine());
-    }
 
     IEnumerator SpawnCoroutine() {
         while (!_stopSpawning) {
