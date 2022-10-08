@@ -27,4 +27,8 @@ public class Background : MonoBehaviour
             transform.position = new Vector3(_mainCamera.position.x, _mainCamera.position.y + offsetPosition, transform.position.z);
         }
     }
+
+    public void IncreaseSpeed() {
+        _speed *= 1.2f;
+    }
 }
