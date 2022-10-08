@@ -1322,6 +1322,7 @@ GameObject:
   - component: {fileID: 4687924906530607223}
   - component: {fileID: 4687924906530607221}
   - component: {fileID: 4687924906530607220}
+  - component: {fileID: 4687924906530607224}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -1350,6 +1351,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1200, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &4687924906530607224
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4687924906530607222}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 672e51aad5b0a934e9d14bbea89f2f0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!222 &7886074738420938249
 CanvasRenderer:
   m_ObjectHideFlags: 0
