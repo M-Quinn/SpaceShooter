@@ -10,6 +10,8 @@ public class BackgroundMusic : MonoBehaviour
     AudioClip[] _backgroundMusic;
     int _currentSongIndex;
 
+    int _maxVolume = 1;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -25,17 +27,26 @@ public class BackgroundMusic : MonoBehaviour
         {
             Debug.LogError("Background Music is missing");
         }
+        SetVolume();
     }
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(FadeIn(5));
     }
+    private void OnEnable() {
+        SettingsMenu.UpdateMusicVolume += SetVolume;
+    }
+    private void OnDisable()
+    {
+        SettingsMenu.UpdateMusicVolume -= SetVolume;
+    }
+
 
     IEnumerator FadeIn(float delay) {
         var timer = Time.time + delay;
         while (Time.time < timer) {
-            _audioSource.volume = 1 - ((timer - Time.time) / timer);
+            _audioSource.volume = Mathf.Clamp(1 - ((timer - Time.time) / timer),0,_maxVolume);
             yield return null;
         }
     }
@@ -45,7 +56,7 @@ public class BackgroundMusic : MonoBehaviour
         while (Time.time < timer)
         {
             Debug.Log(timer/Time.time);
-            _audioSource.volume = (timer / Time.time)-1;
+            Mathf.Clamp(_audioSource.volume = (timer / Time.time)-1,0,_maxVolume);
             yield return null;
         }
     }
@@ -72,6 +83,13 @@ public class BackgroundMusic : MonoBehaviour
         if (songIndex >= _backgroundMusic.Length)
             songIndex = 0;
         return songIndex;
+    }
+    private void SetVolume()
+    {
+        _maxVolume = 100;
+        if (PlayerPrefs.HasKey("MusicVolume"))
+            _maxVolume = PlayerPrefs.GetInt("MusicVolume");
+        _audioSource.volume = _maxVolume / 100;
     }
 
     public void StartFadeOut(float delay) {
