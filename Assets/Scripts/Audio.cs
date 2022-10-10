@@ -6,6 +6,7 @@ using UnityEngine;
 public class Audio : MonoBehaviour
 {
     AudioSource _audioSource;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -13,7 +14,7 @@ public class Audio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(FadeIn(2));
+        StartCoroutine(FadeIn(5));
     }
 
     IEnumerator FadeIn(float delay) {
@@ -24,9 +25,16 @@ public class Audio : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    IEnumerator FadeOut(float delay) {
+        var timer = Time.time + delay;
+        while (Time.time < timer)
+        {
+            _audioSource.volume = ((timer - Time.time) / timer);
+            yield return null;
+        }
+    }
+
+    public void StartFadeOut(float delay) {
+        StartCoroutine(FadeOut(delay));
     }
 }
