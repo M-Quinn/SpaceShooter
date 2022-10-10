@@ -10,7 +10,7 @@ public class BackgroundMusic : MonoBehaviour
     AudioClip[] _backgroundMusic;
     int _currentSongIndex;
 
-    int _maxVolume = 1;
+    float _maxVolume = 1.0f;
 
     private void Awake()
     {
@@ -86,10 +86,11 @@ public class BackgroundMusic : MonoBehaviour
     }
     private void SetVolume()
     {
-        _maxVolume = 100;
+        int volume = 100;
         if (PlayerPrefs.HasKey("MusicVolume"))
-            _maxVolume = PlayerPrefs.GetInt("MusicVolume");
-        _audioSource.volume = _maxVolume / 100;
+            volume = PlayerPrefs.GetInt("MusicVolume");
+        _maxVolume = (float)volume / 100;
+        _audioSource.volume = _maxVolume;
     }
 
     public void StartFadeOut(float delay) {

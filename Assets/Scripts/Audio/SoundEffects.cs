@@ -12,7 +12,7 @@ public class SoundEffects : MonoBehaviour
     [SerializeField] AudioClip _enemyExplosion_SFX;
     [SerializeField] AudioClip _asteroidExplosion_SFX;
 
-    float _maxVolume;
+    float _maxVolume = 1.0f;
 
     private void Awake()
     {
@@ -39,9 +39,10 @@ public class SoundEffects : MonoBehaviour
 
     private void SetVolume()
     {
-        _maxVolume = 100;
+        int volume = 100;
         if (PlayerPrefs.HasKey("SoundEffectVolume"))
-            _maxVolume = PlayerPrefs.GetInt("SoundEffectVolume");
-        _audioSource.volume = _maxVolume / 100;
+            volume = PlayerPrefs.GetInt("SoundEffectVolume");
+        _maxVolume = (float)volume / 100;
+        _audioSource.volume = _maxVolume;
     }
 }
