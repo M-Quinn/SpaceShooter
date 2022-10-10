@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Health : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class Health : MonoBehaviour
     int _maxLives = 3;
     int _lives = 3;
     bool _isAboutToDie;
+
+    public static Action PlayerTookDamage;
+
     private void Start()
     {
         var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -25,6 +30,8 @@ public class Health : MonoBehaviour
     }
 
     public void UpdateHealth(int amount) {
+        if (amount < 0)
+            PlayerTookDamage?.Invoke();
         _lives = Mathf.Clamp(_lives += amount, 0, _maxLives);
         _damageVFXs[Random.Range(0, 2)].SetActive(true);
         if (_isAboutToDie && _lives > 1) {

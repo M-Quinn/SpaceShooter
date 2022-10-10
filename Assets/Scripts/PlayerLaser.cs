@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PlayerLaser : MonoBehaviour
 
     float _speed = 8.0f;
 
+    public static Action LaserShot;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -15,6 +17,7 @@ public class PlayerLaser : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(DisableGameObjectWithDelay(5.0f));
+        LaserShot?.Invoke();
     }
     IEnumerator DisableGameObjectWithDelay(float delay) {
         yield return new WaitForSeconds(delay);

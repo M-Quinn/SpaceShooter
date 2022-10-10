@@ -18,10 +18,16 @@ public class SoundEffects : MonoBehaviour
     }
     private void OnEnable()
     {
-        
+        Asteroid.AsteroidExploded += () => _audioSource.PlayOneShot(_asteroidExplosion_SFX);
+        PlayerLaser.LaserShot += () => _audioSource.PlayOneShot(_laser_SFX);
+        Enemy.EnemyDied += () => _audioSource.PlayOneShot(_enemyExplosion_SFX);
+        Health.PlayerTookDamage += () => _audioSource.PlayOneShot(_playerDamaged_SFX);
     }
     private void OnDisable()
     {
-        
+        Asteroid.AsteroidExploded -= () => _audioSource.PlayOneShot(_asteroidExplosion_SFX);
+        PlayerLaser.LaserShot -= () => _audioSource.PlayOneShot(_laser_SFX);
+        Enemy.EnemyDied -= () => _audioSource.PlayOneShot(_enemyExplosion_SFX);
+        Health.PlayerTookDamage -= () => _audioSource.PlayOneShot(_playerDamaged_SFX);
     }
 }

@@ -17,6 +17,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] TMP_Text _text_Wave;
 
     public static Action StartNextRound;
+    public static Action AsteroidExploded;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +29,7 @@ public class Asteroid : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        AsteroidExploded?.Invoke();
         collision.transform.gameObject.SetActive(false);
         StartCoroutine(Explosion());
         
