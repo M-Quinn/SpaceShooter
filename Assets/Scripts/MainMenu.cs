@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Animator _anim;
     [SerializeField] Background[] _backgrounds;
     [SerializeField] Image _fadeOutImage;
-    [SerializeField] Audio _audio;
+    [SerializeField] BackgroundMusic _backgroundMusic;
 
     float _delay = 1.7f;
 
@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
         asyncLoad.allowSceneActivation = false;
         _fadeOutImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.3f);
-        _audio.StartFadeOut(delay);
+        _backgroundMusic.StartFadeOut(delay);
         var timer = Time.time + delay;
         var timerDelay = timer-1;
         while (!asyncLoad.isDone && (Time.time<=timer)) {

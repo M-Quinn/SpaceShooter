@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class Audio : MonoBehaviour
+public class BackgroundMusic : MonoBehaviour
 {
     AudioSource _audioSource;
     [SerializeField]
