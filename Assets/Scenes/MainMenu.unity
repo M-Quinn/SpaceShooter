@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4687924906441912894}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartNormalGame
+      - m_Target: {fileID: 4687924906441912895}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ResetPacifistHighScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1019,9 +1019,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4687924906441912894}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartNormalGame
+      - m_Target: {fileID: 4687924906441912895}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ResetNormalHighScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2716,7 +2716,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1400535738}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4687924906441912895}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ToggleSettingsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1400535738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4863,6 +4875,7 @@ GameObject:
   - component: {fileID: 4687924906441912882}
   - component: {fileID: 4687924906441912893}
   - component: {fileID: 4687924906441912894}
+  - component: {fileID: 4687924906441912895}
   m_Layer: 5
   m_Name: Canvas-MainMenu
   m_TagString: Untagged
@@ -4896,7 +4909,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4687924906441912892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e97a4592aead6468330eb8dae0ef3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 10bbbc3fa52fd53449f8bd4af96baacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 1333672736}
@@ -4907,7 +4920,23 @@ MonoBehaviour:
   - {fileID: 172609502984652946}
   _fadeOutImage: {fileID: 1606142151}
   _backgroundMusic: {fileID: 2003750971}
-  _delay: 1.7
+--- !u!114 &4687924906441912895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4687924906441912892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01df7f487f3009d4e85030871aa2547e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 1117879231}
+  _normalHighScore_Text: {fileID: 214624010}
+  _pacifistHighScore_Text: {fileID: 756717016}
+  _musicVolume_Text: {fileID: 475828790}
+  _soundEffectsVolume_Text: {fileID: 1868709574}
 --- !u!114 &4687924906530607220
 MonoBehaviour:
   m_ObjectHideFlags: 0
