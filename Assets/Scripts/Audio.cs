@@ -6,10 +6,24 @@ using UnityEngine;
 public class Audio : MonoBehaviour
 {
     AudioSource _audioSource;
+    [SerializeField]
+    AudioClip[] _backgroundMusic;
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _audioSource.volume = 0;
+        if (_backgroundMusic.Length <= 1) {
+            _audioSource.loop = true;
+        }
+        if (_backgroundMusic.Length >= 1) {
+            _audioSource.clip = _backgroundMusic[0];
+            _audioSource.Play();
+        }
+        else
+        {
+            Debug.LogError("Background Music is missing");
+        }
     }
     // Start is called before the first frame update
     void Start()
