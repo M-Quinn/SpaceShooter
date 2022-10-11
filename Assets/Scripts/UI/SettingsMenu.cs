@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
@@ -85,6 +86,9 @@ public class SettingsMenu : MonoBehaviour
         UpdateSoundEffectVolume?.Invoke();
     }
 
+    public void BackToMainMenu() {
+        SceneManager.LoadScene(0);
+    }
     public void Quit() {
         Application.Quit();
     }
