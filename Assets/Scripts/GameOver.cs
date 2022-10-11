@@ -32,7 +32,10 @@ public class GameOver : MonoBehaviour
         if (!_isGameOver)
             return;
         if (_input.Restart)
+        {
+            Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void HandleGameOver() {
