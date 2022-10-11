@@ -2215,6 +2215,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 289417241}
     m_Modifications:
+    - target: {fileID: 2932055114994956229, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 289417245}
+    - target: {fileID: 2932055114994956229, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932055114994956229, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SettingsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2932055115012793456, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2310,10 +2322,6 @@ PrefabInstance:
     - target: {fileID: 2932055115065027170, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2932055115065027171, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2932055115251297067, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3685,7 +3693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1999364671
 RectTransform:
   m_ObjectHideFlags: 0

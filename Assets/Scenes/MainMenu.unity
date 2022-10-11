@@ -1679,7 +1679,15 @@ PrefabInstance:
     - target: {fileID: 2932055114994956229, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4687924906441912894}
+      objectReference: {fileID: 4687924906441912895}
+    - target: {fileID: 2932055114994956229, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932055114994956229, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SettingsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2932055115012793456, guid: ee0d473e5dfd00245aea30df2be952d1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2249,6 +2257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01df7f487f3009d4e85030871aa2547e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isMainMenu: 1
   _anim: {fileID: 1117879231}
   _normalHighScore_Text: {fileID: 214624010}
   _pacifistHighScore_Text: {fileID: 756717016}
