@@ -85,5 +85,10 @@ public class SettingsMenu : MonoBehaviour
         UpdateSoundEffectVolume?.Invoke();
     }
 
+    public void Quit() {
+        Application.Quit();
+    }
+
+
 
 }

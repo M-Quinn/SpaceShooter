@@ -37,12 +37,14 @@ public class Score : MonoBehaviour
     {
         AddToScore += UpdateScore;
         Player.PlayerDied += SaveHighScore;
+        SettingsMenu.QuitGame += HandleQuit;
     }
 
     private void OnDisable()
     {
         AddToScore -= UpdateScore;
         Player.PlayerDied -= SaveHighScore;
+        SettingsMenu.QuitGame -= HandleQuit;
     }
 
     private void UpdateScore(int amountToAdd) {
@@ -56,5 +58,10 @@ public class Score : MonoBehaviour
 
     private void SaveHighScore() {
         PlayerPrefs.SetInt(_hScore, _highScore);
+    }
+
+    private void HandleQuit() {
+        SaveHighScore();
+        Application.Quit();
     }
 }
