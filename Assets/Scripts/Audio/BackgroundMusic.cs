@@ -55,7 +55,7 @@ public class BackgroundMusic : MonoBehaviour
         var timer = Time.time + delay;
         while (Time.time < timer)
         {
-            Debug.Log(timer/Time.time);
+            
             Mathf.Clamp(_audioSource.volume = (timer / Time.time)-1,0,_maxVolume);
             yield return null;
         }

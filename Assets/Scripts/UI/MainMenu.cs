@@ -47,7 +47,6 @@ public class MainMenu : MonoBehaviour
             }
             yield return null;
         }
-        Debug.Log("Loop exited");
         asyncLoad.allowSceneActivation = true;
     }
 }

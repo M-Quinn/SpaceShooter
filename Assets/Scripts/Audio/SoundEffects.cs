@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,14 @@ public class SoundEffects : MonoBehaviour
     AudioSource _audioSource;
     [Header("Sound Effects")]
     [SerializeField] AudioClip _laser_SFX;
+    [SerializeField] AudioClip _enemyLaser_SFX;
     [SerializeField] AudioClip _playerDamaged_SFX;
     [SerializeField] AudioClip _enemyExplosion_SFX;
     [SerializeField] AudioClip _asteroidExplosion_SFX;
 
     float _maxVolume = 1.0f;
+
+    public static Action EnemyLaserShot;
 
     private void Awake()
     {
@@ -24,6 +28,7 @@ public class SoundEffects : MonoBehaviour
     {
         Asteroid.AsteroidExploded += AsteroidSFX;
         PlayerLaser.LaserShot += LaserSFX;
+        EnemyLaserShot += EnemyLaserSFX;
         Enemy.EnemyDied += EnemyDeathSFX;
         Health.PlayerTookDamage += HealthSFX;
         SettingsMenu.UpdateSoundEffectVolume += SetVolume;
@@ -32,6 +37,7 @@ public class SoundEffects : MonoBehaviour
     {
         Asteroid.AsteroidExploded -= AsteroidSFX;
         PlayerLaser.LaserShot -= LaserSFX;
+        EnemyLaserShot -= EnemyLaserSFX;
         Enemy.EnemyDied -= EnemyDeathSFX;
         Health.PlayerTookDamage -= HealthSFX;
         SettingsMenu.UpdateSoundEffectVolume -= SetVolume;
@@ -42,6 +48,10 @@ public class SoundEffects : MonoBehaviour
     }
     private void LaserSFX() {
         _audioSource.PlayOneShot(_laser_SFX);
+    }
+    private void EnemyLaserSFX()
+    {
+        _audioSource.PlayOneShot(_enemyLaser_SFX);
     }
     private void EnemyDeathSFX() {
         _audioSource.PlayOneShot(_enemyExplosion_SFX);
