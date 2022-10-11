@@ -6,13 +6,18 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] GameManager _gameManager;
+    GameManager _gameManager;
     [SerializeField] Animator _anim;
     [SerializeField] Background[] _backgrounds;
     [SerializeField] Image _fadeOutImage;
     [SerializeField] BackgroundMusic _backgroundMusic;
 
     float _delay = 1.7f;
+
+    private void Awake()
+    {
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
     public void StartNormalGame() {
         _gameManager.SetGameType(GameType.normal);
