@@ -33,21 +33,21 @@ public class SpawnManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.PlayerDied += () => _stopSpawning = true;
+        Player.PlayerDied += StopSpawning;
         Enemy.EnemyDiedToLaser += ChanceToSpawnPowerup;
-        Enemy.EnemyBorn += () => _amountOfEnemiesLeft++;
-        Enemy.EnemyDied += () => _amountOfEnemiesLeft--;
+        Enemy.EnemyBorn += AddEnemy;
+        Enemy.EnemyDied += SubtractEnemy;
         GameStart.GameIsReady += SpawnAsteroid;
-        Asteroid.StartNextRound += () => StartCoroutine(SpawnCoroutine());
+        Asteroid.StartNextRound += NextRound;
     }
     private void OnDisable()
     {
-        Player.PlayerDied -= () => _stopSpawning = true;
+        Player.PlayerDied -= StopSpawning;
         Enemy.EnemyDiedToLaser -= ChanceToSpawnPowerup;
-        Enemy.EnemyBorn -= () => _amountOfEnemiesLeft++;
-        Enemy.EnemyDied -= () => _amountOfEnemiesLeft--;
+        Enemy.EnemyBorn -= AddEnemy;
+        Enemy.EnemyDied -= SubtractEnemy;
         GameStart.GameIsReady -= SpawnAsteroid;
-        Asteroid.StartNextRound -= () => StartCoroutine(SpawnCoroutine());
+        Asteroid.StartNextRound -= NextRound;
     }
 
     private void Start()
@@ -120,6 +120,20 @@ public class SpawnManager : MonoBehaviour
         else if (chance <= 0.5f) {
             Instantiate(_smallPrefab, location, Quaternion.identity);
         }
+    }
 
+    private void NextRound() {
+        StartCoroutine(SpawnCoroutine());
+    }
+
+    private void StopSpawning() {
+        _stopSpawning = true;
+    }
+
+    private void AddEnemy() {
+        _amountOfEnemiesLeft++;
+    }
+    private void SubtractEnemy() {
+        _amountOfEnemiesLeft--;
     }
 }

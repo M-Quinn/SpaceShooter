@@ -11,6 +11,13 @@ public class GameOver : MonoBehaviour
 
     bool _isGameOver;
 
+    SoundEffects _soundEffects;
+
+    private void Start()
+    {
+        _soundEffects = GameObject.Find("SoundEffects").GetComponent<SoundEffects>();
+    }
+
     private void OnEnable()
     {
         Player.PlayerDied += HandleGameOver;
