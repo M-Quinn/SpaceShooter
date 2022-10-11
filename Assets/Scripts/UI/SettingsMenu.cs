@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
+    [SerializeField] [Tooltip("This allows for pausing of the game but not needed in the main menu")] bool _isMainMenu;
     [SerializeField] Animator _anim;
     [Header("TextBoxes")]
     [SerializeField] TextMeshProUGUI _normalHighScore_Text;
@@ -50,6 +51,13 @@ public class SettingsMenu : MonoBehaviour
     }
 
     public void ToggleSettingsMenu() {
+        if (!_isMainMenu && !_isSettingsMenuActive)
+        {
+            Time.timeScale = 0;
+        }
+        else {
+            Time.timeScale = 1;
+        }
         _anim.SetTrigger("Toggle");
         _isSettingsMenuActive = !_isSettingsMenuActive;
     }
