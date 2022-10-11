@@ -26,6 +26,7 @@ public class GameStart : MonoBehaviour
             _mainCamera.transform.Translate(Vector3.up * Time.deltaTime * 3);
             yield return null;
         }
+        _fadeOutImage.gameObject.SetActive(false);
         GameIsReady?.Invoke();
 
     }
