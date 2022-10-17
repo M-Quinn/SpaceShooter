@@ -1,4 +1,5 @@
 using Dev.MikeQ.SpaceShooter.Events;
+using Dev.MikeQ.SpaceShooter.Player;
 using System.Collections;
 using UnityEngine;
 
@@ -28,9 +29,9 @@ public class EnemyLaser : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerHandler>(out var player))
+        if (collision.TryGetComponent<Health>(out var health))
         {
-            player.TakeHit();
+            health.TakeHit();
         }
         Destroy(gameObject);
     }

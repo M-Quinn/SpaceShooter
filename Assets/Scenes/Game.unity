@@ -3348,6 +3348,7 @@ MonoBehaviour:
   Fire: 0
   Move: {x: 0, y: 0}
   Restart: 0
+  Thrusters: 0
 --- !u!114 &1589903484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3656,9 +3657,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1731979986}
-  - component: {fileID: 1731979987}
   - component: {fileID: 1731979983}
   - component: {fileID: 1731979984}
+  - component: {fileID: 1731979988}
+  - component: {fileID: 1731979987}
+  - component: {fileID: 1731979985}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3708,6 +3711,23 @@ MonoBehaviour:
   _damageVFXs:
   - {fileID: 1286011064}
   - {fileID: 652201286}
+--- !u!114 &1731979985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731979982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f7b2910f20e0547a6f4046060b5bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 1589903483}
+  _objectPool: {fileID: 1616719368}
+  _topLaserPosition: {fileID: 3624789069366276081}
+  _leftLaserPosition: {fileID: 3624789069399684496}
+  _rightLaserPosition: {fileID: 3624789070276220970}
 --- !u!4 &1731979986
 Transform:
   m_ObjectHideFlags: 0
@@ -3734,20 +3754,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1731979982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dabbde7b101f10349a1d57f602a3d47b, type: 3}
+  m_Script: {fileID: 11500000, guid: 171eed8237d95de4c83ca514971cfcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 1589903483}
-  _objectPool: {fileID: 1616719368}
   _shield: {fileID: 1514514519}
-  _health: {fileID: 1731979984}
-  _topLaserPosition: {fileID: 3624789069366276081}
-  _leftLaserPosition: {fileID: 3624789069399684496}
-  _rightLaserPosition: {fileID: 3624789070276220970}
   _img_TripleShot: {fileID: 1000161079}
   _img_Speed: {fileID: 98837580}
   _img_Big: {fileID: 319655330}
   _img_Small: {fileID: 797872485}
+--- !u!114 &1731979988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731979982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7225c97536bcdc142a91b63e70f518ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 1589903483}
 --- !u!1001 &1736487523
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,18 +23,18 @@ namespace Dev.MikeQ.SpaceShooter.Utils {
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<PlayerHandler>(out var player))
+            if (collision.TryGetComponent<PowerupHandler>(out var powerupHandler))
             {
-                if (player.PowerupActivate(_behavior))
+                if (powerupHandler.PowerupActivate(_behavior))
                     Destroy(gameObject);
             }
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
             //If the powerup couldn't be pickedup on enter
-            if (collision.TryGetComponent<PlayerHandler>(out var player))
+            if (collision.TryGetComponent<PowerupHandler>(out var powerupHandler))
             {
-                if (player.PowerupActivate(_behavior))
+                if (powerupHandler.PowerupActivate(_behavior))
                     Destroy(gameObject);
             }
         }

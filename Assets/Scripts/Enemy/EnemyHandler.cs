@@ -1,4 +1,5 @@
 using Dev.MikeQ.SpaceShooter.Events;
+using Dev.MikeQ.SpaceShooter.Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -49,9 +50,9 @@ namespace Dev.MikeQ.SpaceShooter.Enemy
         {
             if (other.CompareTag("Player"))
             {
-                if (other.TryGetComponent<PlayerHandler>(out var player))
+                if (other.TryGetComponent<Health>(out var health))
                 {
-                    player.TakeHit();
+                    health.TakeHit();
                 }
                 HandleDeath();
             }
