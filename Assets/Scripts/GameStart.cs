@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameStart : MonoBehaviour
 {
-    public static Action GameIsReady;
+    
 
     [SerializeField] Image _fadeOutImage;
     GameObject _mainCamera;
@@ -27,7 +27,7 @@ public class GameStart : MonoBehaviour
             yield return null;
         }
         _fadeOutImage.gameObject.SetActive(false);
-        GameIsReady?.Invoke();
+        EventManager.GameIsReady?.Invoke();
 
     }
 }

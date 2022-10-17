@@ -14,9 +14,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] CircleCollider2D _collider;
     [SerializeField] Transform _transform;
-    [SerializeField] TMP_Text _text_Wave;
-
-    public static Action StartNextRound;
+    [SerializeField] TMP_Text _text_Wave; 
 
     // Update is called once per frame
     void Update()
@@ -28,7 +26,7 @@ public class Asteroid : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SoundEffects.AsteroidExploded?.Invoke();
+        EventManager.AsteroidExploded?.Invoke();
         collision.transform.gameObject.SetActive(false);
         StartCoroutine(Explosion());
         
@@ -42,7 +40,7 @@ public class Asteroid : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _spriteRenderer.enabled = false;
         yield return new WaitForSeconds(2.5f);
-        StartNextRound?.Invoke();
+        EventManager.StartNextRound?.Invoke();
         Destroy(explosion);
         Destroy(gameObject);
     }

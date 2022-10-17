@@ -16,13 +16,6 @@ public class SoundEffects : MonoBehaviour
 
     float _maxVolume = 1.0f;
 
-    public static Action EnemyLaserShot;
-    public static Action AsteroidExploded;
-    public static Action LaserShot;
-    public static Action EnemyDied;
-    public static Action PlayerTookDamage;
-    public static Action UpdateSoundEffectVolume;
-
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -31,21 +24,21 @@ public class SoundEffects : MonoBehaviour
 
     private void OnEnable()
     {
-        AsteroidExploded += AsteroidSFX;
-        LaserShot += LaserSFX;
-        EnemyLaserShot += EnemyLaserSFX;
-        EnemyDied += EnemyDeathSFX;
-        PlayerTookDamage += HealthSFX;
-        UpdateSoundEffectVolume += SetVolume;
+        EventManager.AsteroidExploded += AsteroidSFX;
+        EventManager.PlayerLaserShot += LaserSFX;
+        EventManager.EnemyLaserShot += EnemyLaserSFX;
+        EventManager.EnemyDied += EnemyDeathSFX;
+        EventManager.PlayerTookDamage += HealthSFX;
+        EventManager.UpdateSoundEffectVolume += SetVolume;
     }
     private void OnDisable()
     {
-        AsteroidExploded -= AsteroidSFX;
-        LaserShot -= LaserSFX;
-        EnemyLaserShot -= EnemyLaserSFX;
-        EnemyDied -= EnemyDeathSFX;
-        PlayerTookDamage -= HealthSFX;
-        UpdateSoundEffectVolume -= SetVolume;
+        EventManager.AsteroidExploded -= AsteroidSFX;
+        EventManager.PlayerLaserShot -= LaserSFX;
+        EventManager.EnemyLaserShot -= EnemyLaserSFX;
+        EventManager.EnemyDied -= EnemyDeathSFX;
+        EventManager.PlayerTookDamage -= HealthSFX;
+        EventManager.UpdateSoundEffectVolume -= SetVolume;
     }
 
     private void AsteroidSFX() {

@@ -20,11 +20,11 @@ public class GameOver : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.PlayerDied += HandleGameOver;
+        EventManager.PlayerDied += HandleGameOver;
     }
     private void OnDisable()
     {
-        Player.PlayerDied -= HandleGameOver;
+        EventManager.PlayerDied -= HandleGameOver;
     }
 
     private void Update()

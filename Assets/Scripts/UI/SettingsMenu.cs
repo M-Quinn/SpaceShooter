@@ -21,8 +21,6 @@ public class SettingsMenu : MonoBehaviour
 
     bool _isSettingsMenuActive = false;
 
-    public static Action UpdateMusicVolume;
-
     private void Start()
     {
         PullIntFromPlayerPrefs("HighScore", _normalHighScore_Text, true);
@@ -76,13 +74,13 @@ public class SettingsMenu : MonoBehaviour
         Single x = _musicVolume_Slider.value;
         PlayerPrefs.SetInt("MusicVolume", (int)x);
         _musicVolume_Text.text = ((int)x).ToString();
-        UpdateMusicVolume?.Invoke();
+        EventManager.UpdateMusicVolume?.Invoke();
     }
     public void ChangeSoundEffectVolume() {
         Single x = _soundEffectVolume_Slider.value;
         PlayerPrefs.SetInt("SoundEffectVolume", (int)x);
         _soundEffectsVolume_Text.text = ((int)x).ToString();
-        SoundEffects.UpdateSoundEffectVolume?.Invoke();
+        EventManager.UpdateSoundEffectVolume?.Invoke();
     }
 
     public void BackToMainMenu() {

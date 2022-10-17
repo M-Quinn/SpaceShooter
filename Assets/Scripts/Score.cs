@@ -12,8 +12,6 @@ public class Score : MonoBehaviour
 
     string _hScore = "HighScore";
 
-    public static Action<int> AddToScore;
-
     private void Start()
     {
         var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -35,14 +33,14 @@ public class Score : MonoBehaviour
 
     private void OnEnable()
     {
-        AddToScore += UpdateScore;
-        Player.PlayerDied += SaveHighScore;
+        EventManager.AddToScore += UpdateScore;
+        EventManager.PlayerDied += SaveHighScore;
     }
 
     private void OnDisable()
     {
-        AddToScore -= UpdateScore;
-        Player.PlayerDied -= SaveHighScore;
+        EventManager.AddToScore -= UpdateScore;
+        EventManager.PlayerDied -= SaveHighScore;
     }
 
     private void UpdateScore(int amountToAdd) {

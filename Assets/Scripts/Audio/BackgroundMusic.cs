@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class BackgroundMusic : MonoBehaviour
 
     float _maxVolume = 1.0f;
 
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -20,7 +22,7 @@ public class BackgroundMusic : MonoBehaviour
             _audioSource.loop = true;
         }
         if (_backgroundMusic.Length >= 1) {
-            _currentSongIndex = Random.Range(0, _backgroundMusic.Length);
+            _currentSongIndex = UnityEngine.Random.Range(0, _backgroundMusic.Length);
             StartCoroutine(PlayBackgroundMusic());
         }
         else
@@ -35,11 +37,11 @@ public class BackgroundMusic : MonoBehaviour
         StartCoroutine(FadeIn(5));
     }
     private void OnEnable() {
-        SettingsMenu.UpdateMusicVolume += SetVolume;
+        EventManager.UpdateMusicVolume += SetVolume;
     }
     private void OnDisable()
     {
-        SettingsMenu.UpdateMusicVolume -= SetVolume;
+        EventManager.UpdateMusicVolume -= SetVolume;
     }
 
 

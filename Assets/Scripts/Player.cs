@@ -53,8 +53,6 @@ public class Player : MonoBehaviour
 
     GameType _gameType;
 
-    public static Action PlayerDied;
-
     // Start is called before the first frame update
     void Start()
     {

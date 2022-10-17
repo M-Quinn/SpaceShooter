@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
 
     public void UpdateHealth(int amount) {
         if (amount < 0)
-            SoundEffects.PlayerTookDamage?.Invoke();
+            EventManager.PlayerTookDamage?.Invoke();
         _lives = Mathf.Clamp(_lives += amount, 0, _maxLives);
         _damageVFXs[Random.Range(0, 2)].SetActive(true);
         if (_isAboutToDie && _lives > 1) {
@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
             PlayerIsAboutToDie(true);
         }
         else if (_lives == 0) {
-            Player.PlayerDied?.Invoke();
+            EventManager.PlayerDied?.Invoke();
             Destroy(gameObject);
         }
     }

@@ -16,7 +16,7 @@ public class EnemyLaser : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(DisableGameObjectWithDelay(5.0f));
-        SoundEffects.EnemyLaserShot?.Invoke();
+        EventManager.EnemyLaserShot?.Invoke();
     }
     IEnumerator DisableGameObjectWithDelay(float delay)
     {

@@ -20,13 +20,10 @@ public class Enemy : MonoBehaviour
     int pointsForDestroying = 10;
     bool _isDead = false;
 
-    public static Action<Vector3> EnemyDiedToLaser; //Supplies chance to spawn powerup
-    public static Action EnemyBorn;                 //Used to count how many enemies are left
-
     GameType _gameType;
     private void Start()
     {
-        EnemyBorn?.Invoke();
+        EventManager.EnemyBorn?.Invoke();
     }
 
     // Update is called once per frame
@@ -38,7 +35,7 @@ public class Enemy : MonoBehaviour
         //when hit bottom respawn at top at random x
         if (transform.position.y < _bottomOfTheScreen) {
             if (_gameType == GameType.pacifist) {
-                Score.AddToScore?.Invoke(pointsForDestroying);
+                EventManager.AddToScore?.Invoke(pointsForDestroying);
                 HandleDeath();
                 return;
             }
@@ -58,8 +55,8 @@ public class Enemy : MonoBehaviour
         else if (other.CompareTag("Laser"))
         {
             other.gameObject.SetActive(false);
-            EnemyDiedToLaser?.Invoke(transform.position);
-            Score.AddToScore?.Invoke(pointsForDestroying);
+            EventManager.EnemyDiedToLaser?.Invoke(transform.position);
+            EventManager.AddToScore?.Invoke(pointsForDestroying);
             HandleDeath();
         }
     }
@@ -69,7 +66,7 @@ public class Enemy : MonoBehaviour
         _isDead = true;
         _anim.SetTrigger("Die");
         _collider.enabled = false;
-        SoundEffects.EnemyDied?.Invoke();
+        EventManager.EnemyDied?.Invoke();
         Destroy(gameObject, 1.62f);
     }
 

@@ -33,21 +33,21 @@ public class SpawnManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.PlayerDied += StopSpawning;
-        Enemy.EnemyDiedToLaser += ChanceToSpawnPowerup;
-        Enemy.EnemyBorn += AddEnemy;
-        Enemy.EnemyDied += SubtractEnemy;
-        GameStart.GameIsReady += SpawnAsteroid;
-        Asteroid.StartNextRound += NextRound;
+        EventManager.PlayerDied += StopSpawning;
+        EventManager.EnemyDiedToLaser += ChanceToSpawnPowerup;
+        EventManager.EnemyBorn += AddEnemy;
+        EventManager.EnemyDied += SubtractEnemy;
+        EventManager.GameIsReady += SpawnAsteroid;
+        EventManager.StartNextRound += NextRound;
     }
     private void OnDisable()
     {
-        Player.PlayerDied -= StopSpawning;
-        Enemy.EnemyDiedToLaser -= ChanceToSpawnPowerup;
-        Enemy.EnemyBorn -= AddEnemy;
-        Enemy.EnemyDied -= SubtractEnemy;
-        GameStart.GameIsReady -= SpawnAsteroid;
-        Asteroid.StartNextRound -= NextRound;
+        EventManager.PlayerDied -= StopSpawning;
+        EventManager.EnemyDiedToLaser -= ChanceToSpawnPowerup;
+        EventManager.EnemyBorn -= AddEnemy;
+        EventManager.EnemyDied -= SubtractEnemy;
+        EventManager.GameIsReady -= SpawnAsteroid;
+        EventManager.StartNextRound -= NextRound;
     }
 
     private void Start()

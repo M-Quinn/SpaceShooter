@@ -49,7 +49,7 @@ MonoBehaviour:
   _explosionVFX: {fileID: 6969402610797765628, guid: 1cbc0808f1ceb2d45a041ea9088f57d1, type: 3}
   _spriteRenderer: {fileID: 8283670575395970290}
   _collider: {fileID: 8283670575097995245}
-  transform: {fileID: 8283670575395970289}
+  _transform: {fileID: 8283670575395970289}
   _text_Wave: {fileID: 8283670575805302053}
 --- !u!58 &8283670575097995245
 CircleCollider2D:

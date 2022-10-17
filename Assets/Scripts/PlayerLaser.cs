@@ -16,10 +16,10 @@ public class PlayerLaser : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(DisableGameObjectWithDelay(5.0f));
-        if (SoundEffects.LaserShot == null) {
+        if (EventManager.PlayerLaserShot == null) {
             Debug.LogError("Laser Shot event is null");
         }
-        SoundEffects.LaserShot.Invoke();
+        EventManager.PlayerLaserShot.Invoke();
     }
     IEnumerator DisableGameObjectWithDelay(float delay) {
         yield return new WaitForSeconds(delay);
