@@ -5,22 +5,21 @@ using UnityEngine;
 
 public class PlayerLaser : MonoBehaviour
 {
-    Rigidbody rb;
+    Rigidbody _rb;
 
     float _speed = 8.0f;
 
-    public static Action LaserShot;
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
     private void OnEnable()
     {
         StartCoroutine(DisableGameObjectWithDelay(5.0f));
-        if (LaserShot == null) {
+        if (SoundEffects.LaserShot == null) {
             Debug.LogError("Laser Shot event is null");
         }
-        LaserShot.Invoke();
+        SoundEffects.LaserShot.Invoke();
     }
     IEnumerator DisableGameObjectWithDelay(float delay) {
         yield return new WaitForSeconds(delay);

@@ -22,7 +22,6 @@ public class SettingsMenu : MonoBehaviour
     bool _isSettingsMenuActive = false;
 
     public static Action UpdateMusicVolume;
-    public static Action UpdateSoundEffectVolume;
 
     private void Start()
     {
@@ -83,7 +82,7 @@ public class SettingsMenu : MonoBehaviour
         Single x = _soundEffectVolume_Slider.value;
         PlayerPrefs.SetInt("SoundEffectVolume", (int)x);
         _soundEffectsVolume_Text.text = ((int)x).ToString();
-        UpdateSoundEffectVolume?.Invoke();
+        SoundEffects.UpdateSoundEffectVolume?.Invoke();
     }
 
     public void BackToMainMenu() {

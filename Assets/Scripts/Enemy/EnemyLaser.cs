@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class EnemyLaser : MonoBehaviour
 {
-    Rigidbody rb;
+    Rigidbody _rb;
 
     float _speed = 6.0f;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
     private void OnEnable()
     {

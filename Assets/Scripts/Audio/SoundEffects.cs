@@ -17,6 +17,11 @@ public class SoundEffects : MonoBehaviour
     float _maxVolume = 1.0f;
 
     public static Action EnemyLaserShot;
+    public static Action AsteroidExploded;
+    public static Action LaserShot;
+    public static Action EnemyDied;
+    public static Action PlayerTookDamage;
+    public static Action UpdateSoundEffectVolume;
 
     private void Awake()
     {
@@ -26,21 +31,21 @@ public class SoundEffects : MonoBehaviour
 
     private void OnEnable()
     {
-        Asteroid.AsteroidExploded += AsteroidSFX;
-        PlayerLaser.LaserShot += LaserSFX;
+        AsteroidExploded += AsteroidSFX;
+        LaserShot += LaserSFX;
         EnemyLaserShot += EnemyLaserSFX;
-        Enemy.EnemyDied += EnemyDeathSFX;
-        Health.PlayerTookDamage += HealthSFX;
-        SettingsMenu.UpdateSoundEffectVolume += SetVolume;
+        EnemyDied += EnemyDeathSFX;
+        PlayerTookDamage += HealthSFX;
+        UpdateSoundEffectVolume += SetVolume;
     }
     private void OnDisable()
     {
-        Asteroid.AsteroidExploded -= AsteroidSFX;
-        PlayerLaser.LaserShot -= LaserSFX;
+        AsteroidExploded -= AsteroidSFX;
+        LaserShot -= LaserSFX;
         EnemyLaserShot -= EnemyLaserSFX;
-        Enemy.EnemyDied -= EnemyDeathSFX;
-        Health.PlayerTookDamage -= HealthSFX;
-        SettingsMenu.UpdateSoundEffectVolume -= SetVolume;
+        EnemyDied -= EnemyDeathSFX;
+        PlayerTookDamage -= HealthSFX;
+        UpdateSoundEffectVolume -= SetVolume;
     }
 
     private void AsteroidSFX() {

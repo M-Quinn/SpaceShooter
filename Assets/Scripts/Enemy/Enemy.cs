@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
     bool _isDead = false;
 
     public static Action<Vector3> EnemyDiedToLaser; //Supplies chance to spawn powerup
-    public static Action EnemyDied;                 //Used to count how many enemies are left
     public static Action EnemyBorn;                 //Used to count how many enemies are left
 
     GameType _gameType;
@@ -70,7 +69,7 @@ public class Enemy : MonoBehaviour
         _isDead = true;
         _anim.SetTrigger("Die");
         _collider.enabled = false;
-        EnemyDied?.Invoke();
+        SoundEffects.EnemyDied?.Invoke();
         Destroy(gameObject, 1.62f);
     }
 
