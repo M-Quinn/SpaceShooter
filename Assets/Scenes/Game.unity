@@ -2793,7 +2793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _laser_SFX: {fileID: 8300000, guid: c7c3eec1def12c4478d3669a5c93b1ee, type: 3}
-  _enemyLaser_SFX: {fileID: 0}
+  _enemyLaser_SFX: {fileID: 8300000, guid: a21a2c9ff4e08b2488fcce1294213f2d, type: 3}
   _playerDamaged_SFX: {fileID: 8300000, guid: 4a9f79905eb99de4f81fd23262dc189b, type: 3}
   _enemyExplosion_SFX: {fileID: 8300000, guid: 1d00916f88025334f8d321e4092ae1b8, type: 3}
   _asteroidExplosion_SFX: {fileID: 8300000, guid: cd7532ef9f1b4b548a16ceac3e9595df, type: 3}
