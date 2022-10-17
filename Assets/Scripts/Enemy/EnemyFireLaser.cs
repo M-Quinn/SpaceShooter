@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireLaser : MonoBehaviour
+public class EnemyFireLaser : MonoBehaviour
 {
     [SerializeField] GameObject _enemyLaser;
     float _minTimeBeforeShot = 3.0f;
