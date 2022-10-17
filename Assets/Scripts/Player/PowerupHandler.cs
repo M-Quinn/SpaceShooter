@@ -16,6 +16,13 @@ namespace Dev.MikeQ.SpaceShooter.Player
         [SerializeField] Image _img_Big;
         [SerializeField] Image _img_Small;
 
+        Color _shieldFull = new Color(0.2047369f, 1, 0, 0.5019608f);
+        Color _shieldMed = new Color(1, 0.495748f, 0, 0.5019608f);
+        Color _shieldLow = new Color(1, 0.08126676f, 0, 0.5019608f);
+        SpriteRenderer _shieldSpriteRenderer;
+        Animator _shieldAnim;
+        const string TAKE_HIT_STRING = "TakeHit";
+
         public bool IsTripleShotEnabled { get; private set; }
         public bool IsSpeedBoostEnabled { get; private set; }
         public bool IsShieldEnabled { get; private set; }
@@ -28,10 +35,17 @@ namespace Dev.MikeQ.SpaceShooter.Player
         bool _isSmallEnabled = false;
 
         float _powerupCooldown = 5.0f;
+        int _shieldStrength = 3;
 
         Vector3 _bigScale = new Vector3(1, 1, 1);
         Vector3 _smallScale = new Vector3(0.5f, 0.5f, 0.5f);
         Vector3 _normalScale = new Vector3(0.7f, 0.7f, 0.7f);
+
+        private void Start()
+        {
+            _shieldSpriteRenderer = _shield.GetComponent<SpriteRenderer>();
+            _shieldAnim = _shield.GetComponent<Animator>();
+        }
 
         private void Update()
         {
@@ -68,9 +82,11 @@ namespace Dev.MikeQ.SpaceShooter.Player
                     StartCoroutine(PowerupCooldown(result => _isTripleShotEnabled = result, _img_TripleShot, _powerupCooldown));
                     return true;
                 case Powerup.PowerupLogic.Shield:
-                    if (_isShieldEnabled)
+                    if (_shieldStrength>2&&_isShieldEnabled)
                         return false;
                     _isShieldEnabled = true;
+                    _shieldStrength = 3;
+                    _shieldSpriteRenderer.color = _shieldFull;
                     _shield.SetActive(_isShieldEnabled);
                     return true;
                 case Powerup.PowerupLogic.SpeedBoost:
@@ -95,8 +111,33 @@ namespace Dev.MikeQ.SpaceShooter.Player
         }
 
         public void UseShield() {
-            _isShieldEnabled = false;
-            _shield.SetActive(_isShieldEnabled);
+            _shieldAnim.SetTrigger(TAKE_HIT_STRING);
+            _shieldStrength--;
+            if (_shieldStrength <= 0)
+            {
+                _isShieldEnabled = false;
+                _shield.SetActive(_isShieldEnabled);
+            }
+            else
+            {
+                if (_shieldStrength == 2)
+                {
+                    StartCoroutine(TweenColor(_shieldMed, _shieldStrength));
+                }
+                else
+                    StartCoroutine(TweenColor(_shieldLow, _shieldStrength));
+
+            }
+        }
+
+        IEnumerator TweenColor(Color newColor, int strength) {
+            float t = 0;
+            Color oldColor = _shieldSpriteRenderer.color;
+            while (_shieldSpriteRenderer.color != newColor && _shieldStrength==strength) {
+                _shieldSpriteRenderer.color = Color.Lerp(oldColor, newColor, t);
+                yield return null;
+                t += Time.deltaTime*2;
+            }
         }
 
         IEnumerator PowerupCooldown(Action<bool> powerup, Image ui_Image, float cooldown)
