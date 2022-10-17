@@ -1,6 +1,5 @@
-using System;
+using Dev.MikeQ.SpaceShooter.Events;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

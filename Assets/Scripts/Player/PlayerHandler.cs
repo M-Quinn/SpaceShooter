@@ -1,10 +1,11 @@
+using Dev.MikeQ.SpaceShooter.Input;
+using Dev.MikeQ.SpaceShooter.Utils;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class PlayerHandler : MonoBehaviour
 {
 
 

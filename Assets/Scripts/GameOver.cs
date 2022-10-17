@@ -1,47 +1,54 @@
+using Dev.MikeQ.SpaceShooter.Audio;
+using Dev.MikeQ.SpaceShooter.Events;
+using Dev.MikeQ.SpaceShooter.Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
-{
-    [Header("Text Objects")]
-    [SerializeField] GameObject _text_GameOver;
-    [SerializeField] GameObject _text_Restart;
-    [Header("Dependencies")]
-    [SerializeField] InputHandler _input;
-
-    bool _isGameOver;
-
-    SoundEffects _soundEffects;
-
-    private void Start()
+namespace Dev.MikeQ.SpaceShooter.GameManagement {
+    public class GameOver : MonoBehaviour
     {
-        _soundEffects = GameObject.Find("SoundEffects").GetComponent<SoundEffects>();
-    }
+        [Header("Text Objects")]
+        [SerializeField] GameObject _text_GameOver;
+        [SerializeField] GameObject _text_Restart;
+        [Header("Dependencies")]
+        [SerializeField] InputHandler _input;
 
-    private void OnEnable()
-    {
-        EventManager.PlayerDied += HandleGameOver;
-    }
-    private void OnDisable()
-    {
-        EventManager.PlayerDied -= HandleGameOver;
-    }
+        bool _isGameOver;
 
-    private void Update()
-    {
-        if (!_isGameOver)
-            return;
-        if (_input.Restart)
+        SoundEffects _soundEffects;
+
+        private void Start()
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            _soundEffects = GameObject.Find("SoundEffects").GetComponent<SoundEffects>();
         }
-    }
 
-    private void HandleGameOver() {
-        _isGameOver = true;
-        _text_GameOver.SetActive(true);
-        _text_Restart.SetActive(true);
+        private void OnEnable()
+        {
+            EventManager.PlayerDied += HandleGameOver;
+        }
+        private void OnDisable()
+        {
+            EventManager.PlayerDied -= HandleGameOver;
+        }
+
+        private void Update()
+        {
+            if (!_isGameOver)
+                return;
+            if (_input.Restart)
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
+
+        private void HandleGameOver()
+        {
+            _isGameOver = true;
+            _text_GameOver.SetActive(true);
+            _text_Restart.SetActive(true);
+        }
+
     }
 
 }
