@@ -1,3 +1,5 @@
+using Dev.MikeQ.SpaceShooter.Events;
+using Dev.MikeQ.SpaceShooter.GameManagement;
 using Dev.MikeQ.SpaceShooter.Input;
 using Dev.MikeQ.SpaceShooter.Utils;
 using System.Collections;
@@ -17,6 +19,8 @@ namespace Dev.MikeQ.SpaceShooter.Player {
 
         float _timeToWait = 0.3f;
         float _cooldownTimer;
+        int _ammo = 15;
+        int _maxAmmo = 15;
 
         GameType _gameType;
 
@@ -42,11 +46,14 @@ namespace Dev.MikeQ.SpaceShooter.Player {
         }
         private void FireLaser()
         {
-
-            if (_powerupHandler.IsTripleShotEnabled)
+            if (_ammo <= 0) 
+                DryFire();
+            else if (_powerupHandler.IsTripleShotEnabled)
                 FireTripleShot();
             else
                 FireNormalShot();
+            _ammo--;
+            UIManager.UpdateAmmo(_ammo);
             _cooldownTimer = Time.time + _timeToWait;
         }
 
@@ -59,6 +66,9 @@ namespace Dev.MikeQ.SpaceShooter.Player {
         private void FireNormalShot()
         {
             _objectPool.GetPlayerLaser(_topLaserPosition.transform.position);
+        }
+        private void DryFire() {
+            EventManager.DryFireShot?.Invoke();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Dev.MikeQ.SpaceShooter.Audio
         [SerializeField] AudioClip _playerDamaged_SFX;
         [SerializeField] AudioClip _enemyExplosion_SFX;
         [SerializeField] AudioClip _asteroidExplosion_SFX;
+        [SerializeField] AudioClip _dryFire_SFX;
 
         float _maxVolume = 1.0f;
 
@@ -30,6 +31,7 @@ namespace Dev.MikeQ.SpaceShooter.Audio
             EventManager.EnemyDied += EnemyDeathSFX;
             EventManager.PlayerTookDamage += HealthSFX;
             EventManager.UpdateSoundEffectVolume += SetVolume;
+            EventManager.DryFireShot += DryFireSFX;
         }
         private void OnDisable()
         {
@@ -39,6 +41,7 @@ namespace Dev.MikeQ.SpaceShooter.Audio
             EventManager.EnemyDied -= EnemyDeathSFX;
             EventManager.PlayerTookDamage -= HealthSFX;
             EventManager.UpdateSoundEffectVolume -= SetVolume;
+            EventManager.DryFireShot -= DryFireSFX;
         }
 
         private void AsteroidSFX()
@@ -60,6 +63,9 @@ namespace Dev.MikeQ.SpaceShooter.Audio
         private void HealthSFX()
         {
             _audioSource.PlayOneShot(_playerDamaged_SFX);
+        }
+        private void DryFireSFX() {
+            _audioSource.PlayOneShot(_dryFire_SFX);
         }
 
         private void SetVolume()

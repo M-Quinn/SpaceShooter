@@ -23,6 +23,18 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement {
                 }
             }
         }
+        private void OnEnable()
+        {
+            UpdateAmmo += HandleUpdateAmmo;
+        }
+        private void OnDisable()
+        {
+            UpdateAmmo -= HandleUpdateAmmo;
+        }
+
+        private void HandleUpdateAmmo(int ammo) { 
+            
+        }
     }
 
 }
