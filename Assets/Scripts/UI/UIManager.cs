@@ -1,12 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-namespace Dev.MikeQ.SpaceShooter.GameManagement {
+namespace Dev.MikeQ.SpaceShooter.GameManagement
+{
     public class UIManager : MonoBehaviour
     {
         [SerializeField] GameObject _pacifistText;
+        [SerializeField] TMP_Text _ammoText;
 
         public static Action<int> UpdateAmmo;
 
@@ -32,8 +33,13 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement {
             UpdateAmmo -= HandleUpdateAmmo;
         }
 
-        private void HandleUpdateAmmo(int ammo) { 
-            
+        private void HandleUpdateAmmo(int ammo) {
+            _ammoText.text = ammo.ToString();
+            if (ammo > 5) { }
+            else if (ammo > 0)
+                _ammoText.color = Color.yellow;
+            else
+                _ammoText.color = Color.red;
         }
     }
 

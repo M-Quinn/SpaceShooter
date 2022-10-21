@@ -2,11 +2,11 @@ using Dev.MikeQ.SpaceShooter.Events;
 using Dev.MikeQ.SpaceShooter.GameManagement;
 using Dev.MikeQ.SpaceShooter.Input;
 using Dev.MikeQ.SpaceShooter.Utils;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-namespace Dev.MikeQ.SpaceShooter.Player {
+namespace Dev.MikeQ.SpaceShooter.Player
+{
     public class PlayerFireLaser : MonoBehaviour
     {
         [SerializeField] InputHandler _input;
@@ -21,8 +21,11 @@ namespace Dev.MikeQ.SpaceShooter.Player {
         float _cooldownTimer;
         int _ammo = 15;
         int _maxAmmo = 15;
+        bool _ammoCanDecrement;
 
         GameType _gameType;
+
+        public static Action AmmoPickup;
 
         private void Start()
         {
@@ -35,6 +38,18 @@ namespace Dev.MikeQ.SpaceShooter.Player {
             else
                 _gameType = gameManager.GetGameType();
         }
+        private void OnEnable()
+        {
+            AmmoPickup += RefilAmmo;
+            EventManager.RoundOver += PauseAmmoDecrement;
+            EventManager.StartNextRound += ResumeAmmoDecrement;
+        }
+        private void OnDisable()
+        {
+            AmmoPickup -= RefilAmmo;
+            EventManager.RoundOver -= PauseAmmoDecrement;
+            EventManager.StartNextRound -= ResumeAmmoDecrement;
+        }
 
         private void Update()
         {
@@ -46,15 +61,22 @@ namespace Dev.MikeQ.SpaceShooter.Player {
         }
         private void FireLaser()
         {
-            if (_ammo <= 0) 
+            if (_ammo <= 0)
                 DryFire();
             else if (_powerupHandler.IsTripleShotEnabled)
                 FireTripleShot();
             else
                 FireNormalShot();
-            _ammo--;
-            UIManager.UpdateAmmo(_ammo);
+            DecrementAmmo();
             _cooldownTimer = Time.time + _timeToWait;
+        }
+
+        private void DecrementAmmo()
+        {
+            if (!_ammoCanDecrement)
+                return;
+            _ammo = Mathf.Clamp(_ammo - 1, 0, _maxAmmo);
+            UIManager.UpdateAmmo(_ammo);
         }
 
         private void FireTripleShot()
@@ -69,6 +91,19 @@ namespace Dev.MikeQ.SpaceShooter.Player {
         }
         private void DryFire() {
             EventManager.DryFireShot?.Invoke();
+        }
+        private void RefilAmmo()
+        {
+            _ammo = _maxAmmo;
+            UIManager.UpdateAmmo(_ammo);
+        }
+        private void PauseAmmoDecrement() {
+            RefilAmmo();
+            _ammoCanDecrement = false;
+        }
+        private void ResumeAmmoDecrement() {
+            RefilAmmo();
+            _ammoCanDecrement = true;
         }
     }
 }

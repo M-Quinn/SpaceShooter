@@ -19,6 +19,7 @@ namespace Dev.MikeQ.SpaceShooter.Events {
         public static Action AsteroidExploded;
 
         public static Action StartNextRound;
+        public static Action RoundOver;
         public static Action GameIsReady;
 
         public static Action UpdateSoundEffectVolume;

@@ -64,6 +64,7 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
 
         private void SpawnAsteroid()
         {
+            EventManager.RoundOver?.Invoke();
             _waveNumber++;
             _amountOfEnemiesToSpawn += (_amountOfEnemiesToSpawn / 2);
             if (_gameType == GameType.pacifist)
