@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,9 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement {
     public class UIManager : MonoBehaviour
     {
         [SerializeField] GameObject _pacifistText;
-        // Start is called before the first frame update
+
+        public static Action<int> UpdateAmmo;
+
         void Start()
         {
             var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
