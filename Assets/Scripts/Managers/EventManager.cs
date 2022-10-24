@@ -13,7 +13,9 @@ namespace Dev.MikeQ.SpaceShooter.Events {
         public static Action PlayerLaserShot;
         public static Action DryFireShot;
         public static Action LowAmmo;
+
         public static Action AmmoPickup;
+        public static Action HealthPickup;
 
         public static Action PlayerTookDamage;
         public static Action PlayerDied;
