@@ -76,13 +76,15 @@ namespace Dev.MikeQ.SpaceShooter.Player {
 
         public void PlayerIsAboutToDie(bool isAboutToDie)
         {
-            foreach (GameObject go in _damageVFXs)
-            {
-                go.SetActive(true);
-            }
             _isAboutToDie = isAboutToDie;
-            if (_isAboutToDie)
+            if (_isAboutToDie) {
+                foreach (GameObject go in _damageVFXs)
+                {
+                    go.SetActive(true);
+                }
                 StartCoroutine(RedFlash());
+            }
+                
         }
         IEnumerator RedFlash()
         {
@@ -91,6 +93,7 @@ namespace Dev.MikeQ.SpaceShooter.Player {
                 _playerSprite.color = Color.Lerp(Color.white, Color.red, Mathf.PingPong(Time.time, 1));
                 yield return null;
             }
+            _playerSprite.color = Color.white;
         }
         public void TakeHit()
         {
