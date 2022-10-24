@@ -13,6 +13,8 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
         [SerializeField] GameObject _shieldBoostPrefab;
         [SerializeField] GameObject _bigPrefab;
         [SerializeField] GameObject _smallPrefab;
+        [Header("AmmoPrefab")]
+        [SerializeField] GameObject _ammoPrefab;
         [Header("Enemy")]
         [SerializeField] GameObject _enemyContainer;
         [SerializeField] GameObject _enemyPrefab;
@@ -25,7 +27,9 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
         //Width of the screen
         float _minX = -9.0f;
         float _maxX = 9.0f;
+
         bool _stopSpawning = false;
+        bool _startSpawningAmmo = false; //true - spawns ammo | false - stops spawning ammo
 
         int _waveNumber = 0;
         int _amountOfEnemiesToSpawn = 5;    //Start on 5
@@ -42,6 +46,8 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
             EventManager.EnemyDied += SubtractEnemy;
             EventManager.GameIsReady += SpawnAsteroid;
             EventManager.StartNextRound += NextRound;
+            EventManager.LowAmmo += SpawnAmmoOn;
+            EventManager.AmmoPickup += SpawnAmmoOff;
         }
         private void OnDisable()
         {
@@ -51,6 +57,8 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
             EventManager.EnemyDied -= SubtractEnemy;
             EventManager.GameIsReady -= SpawnAsteroid;
             EventManager.StartNextRound -= NextRound;
+            EventManager.LowAmmo -= SpawnAmmoOn;
+            EventManager.AmmoPickup -= SpawnAmmoOff;
         }
 
         private void Start()
@@ -76,6 +84,14 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
             asteroid.GetComponent<Asteroid>().SetWaveText(_waveNumber);
 
         }
+
+        private void SpawnAmmoOn() {
+            if (_startSpawningAmmo) {
+                return;
+            }
+            StartCoroutine(SpawnAmmoCoroutine());
+        }
+        private void SpawnAmmoOff() => _startSpawningAmmo = false;
 
         IEnumerator SpawnCoroutine()
         {
@@ -104,6 +120,16 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
                 yield return null;
             }
             SpawnAsteroid();
+        }
+
+        IEnumerator SpawnAmmoCoroutine() {
+            while (_startSpawningAmmo) {
+                yield return new WaitForSeconds(2.7f);
+                Instantiate(_ammoPrefab, new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, 0), Quaternion.identity);
+            }
+
+                
+
         }
 
         private void ChanceToSpawnPowerup(Vector3 location)

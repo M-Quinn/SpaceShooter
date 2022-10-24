@@ -1,7 +1,7 @@
+using Dev.MikeQ.SpaceShooter.Events;
 using Dev.MikeQ.SpaceShooter.Utils;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -103,6 +103,9 @@ namespace Dev.MikeQ.SpaceShooter.Player
                     if (_isSmallEnabled)
                         return false;
                     StartCoroutine(PowerupCooldown(result => _isSmallEnabled = result, _img_Small, _powerupCooldown));
+                    return true;
+                case Powerup.PowerupLogic.Ammo:
+                    EventManager.AmmoPickup?.Invoke();
                     return true;
                 default:
                     Debug.LogError("No Behavior was detected");

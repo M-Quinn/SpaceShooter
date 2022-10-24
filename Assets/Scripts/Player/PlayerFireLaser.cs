@@ -25,7 +25,7 @@ namespace Dev.MikeQ.SpaceShooter.Player
 
         GameType _gameType;
 
-        public static Action AmmoPickup;
+        
 
         private void Start()
         {
@@ -40,13 +40,13 @@ namespace Dev.MikeQ.SpaceShooter.Player
         }
         private void OnEnable()
         {
-            AmmoPickup += RefilAmmo;
+            EventManager.AmmoPickup += RefilAmmo;
             EventManager.RoundOver += PauseAmmoDecrement;
             EventManager.StartNextRound += ResumeAmmoDecrement;
         }
         private void OnDisable()
         {
-            AmmoPickup -= RefilAmmo;
+            EventManager.AmmoPickup -= RefilAmmo;
             EventManager.RoundOver -= PauseAmmoDecrement;
             EventManager.StartNextRound -= ResumeAmmoDecrement;
         }
