@@ -29,15 +29,15 @@ namespace Dev.MikeQ.SpaceShooter.Player {
                     PlayerIsAboutToDie(true);
                 }
             }
-
+        }
+        private void OnEnable()
+        {
+            EventManager.HealthPickup += UpdateHealth;
         }
 
         public void UpdateHealth(int amount)
         {
-            if (amount < 0)
-                EventManager.PlayerTookDamage?.Invoke();
             _lives = Mathf.Clamp(_lives += amount, 0, _maxLives);
-            _damageVFXs[Random.Range(0, 2)].SetActive(true);
             if (_isAboutToDie && _lives > 1)
             {
                 PlayerIsAboutToDie(false);
@@ -51,7 +51,29 @@ namespace Dev.MikeQ.SpaceShooter.Player {
                 EventManager.PlayerDied?.Invoke();
                 Destroy(gameObject);
             }
+            UpdateDamageVFX(amount);
         }
+
+        private void UpdateDamageVFX(int amount)
+        {
+            if (amount < 0)
+            {
+                EventManager.PlayerTookDamage?.Invoke();
+                _damageVFXs[Random.Range(0, 2)].SetActive(true);
+            }
+            else
+            {
+                foreach (var damageVFX in _damageVFXs)
+                {
+                    if (damageVFX.activeInHierarchy)
+                    {
+                        damageVFX.SetActive(false);
+                        break;
+                    }
+                }
+            }
+        }
+
         public void PlayerIsAboutToDie(bool isAboutToDie)
         {
             foreach (GameObject go in _damageVFXs)

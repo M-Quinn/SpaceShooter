@@ -13,6 +13,7 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
         [SerializeField] GameObject _shieldBoostPrefab;
         [SerializeField] GameObject _bigPrefab;
         [SerializeField] GameObject _smallPrefab;
+        [SerializeField] GameObject _healthPrefab;
         [Header("AmmoPrefab")]
         [SerializeField] GameObject _ammoPrefab;
         [Header("Enemy")]
@@ -136,25 +137,28 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
         private void ChanceToSpawnPowerup(Vector3 location)
         {
             float chance = Random.Range(0.0f, 1.0f);
-            if (chance <= 0.1f)
+            if (chance <= 0.10f)
             {
                 Instantiate(_tripleShotPrefab, location, Quaternion.identity);
             }
-            else if (chance <= 0.2f)
+            else if (chance <= 0.20f)
             {
                 Instantiate(_speedBoostPrefab, location, Quaternion.identity);
             }
-            else if (chance <= 0.3f)
+            else if (chance <= 0.30f)
             {
                 Instantiate(_shieldBoostPrefab, location, Quaternion.identity);
             }
-            else if (chance <= 0.4f)
+            else if (chance <= 0.40f)
             {
                 Instantiate(_bigPrefab, location, Quaternion.identity);
             }
-            else if (chance <= 0.5f)
+            else if (chance <= 0.50f)
             {
                 Instantiate(_smallPrefab, location, Quaternion.identity);
+            }
+            else if (chance <= 0.55f) {
+                Instantiate(_healthPrefab, location, Quaternion.identity);
             }
         }
 

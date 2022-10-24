@@ -2237,7 +2237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bbbc3fa52fd53449f8bd4af96baacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 1333672736}
   _anim: {fileID: 4687924906530607224}
   _backgrounds:
   - {fileID: 172609502996562507}

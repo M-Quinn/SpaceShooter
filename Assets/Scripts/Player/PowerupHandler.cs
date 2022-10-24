@@ -107,6 +107,9 @@ namespace Dev.MikeQ.SpaceShooter.Player
                 case Powerup.PowerupLogic.Ammo:
                     EventManager.AmmoPickup?.Invoke();
                     return true;
+                case Powerup.PowerupLogic.Health:
+                    EventManager.HealthPickup?.Invoke(1);
+                    return true;
                 default:
                     Debug.LogError("No Behavior was detected");
                     return false;
