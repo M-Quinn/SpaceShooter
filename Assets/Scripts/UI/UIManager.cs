@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using Dev.MikeQ.SpaceShooter.Events;
 
 namespace Dev.MikeQ.SpaceShooter.GameManagement
 {
@@ -35,11 +36,18 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
 
         private void HandleUpdateAmmo(int ammo) {
             _ammoText.text = ammo.ToString();
-            if (ammo > 5) { }
+            if (ammo > 5)
+                _ammoText.color = Color.white;
             else if (ammo > 0)
+            {
                 _ammoText.color = Color.yellow;
-            else
+                EventManager.LowAmmo?.Invoke();
+            }
+            else {
                 _ammoText.color = Color.red;
+                EventManager.LowAmmo?.Invoke();
+            }
+                
         }
     }
 
