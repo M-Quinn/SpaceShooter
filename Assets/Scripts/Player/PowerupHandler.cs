@@ -26,6 +26,7 @@ namespace Dev.MikeQ.SpaceShooter.Player
         public bool IsTripleShotEnabled { get; private set; }
         public bool IsSpeedBoostEnabled { get; private set; }
         public bool IsShieldEnabled { get; private set; }
+        public bool IsSuperLaserEnabled { get; private set; }
 
         //Powerups
         bool _isTripleShotEnabled = false;

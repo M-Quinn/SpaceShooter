@@ -3,6 +3,7 @@ using Dev.MikeQ.SpaceShooter.GameManagement;
 using Dev.MikeQ.SpaceShooter.Input;
 using Dev.MikeQ.SpaceShooter.Utils;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Dev.MikeQ.SpaceShooter.Player
@@ -18,10 +19,12 @@ namespace Dev.MikeQ.SpaceShooter.Player
         PowerupHandler _powerupHandler;
 
         float _timeToWait = 0.3f;
+        float _timeToWaitSuperLaser = .08f;
         float _cooldownTimer;
         int _ammo = 15;
         int _maxAmmo = 15;
         bool _ammoCanDecrement;
+        bool _isFiringSuperLaser;
 
         GameType _gameType;
 
@@ -53,11 +56,23 @@ namespace Dev.MikeQ.SpaceShooter.Player
 
         private void Update()
         {
+            if (_powerupHandler.IsSuperLaserEnabled) {
+                if (_isFiringSuperLaser)
+                    return;
+                StartCoroutine(FireSuperLaser());
+                return;
+            }
+            if (_isFiringSuperLaser) {
+                if (!_powerupHandler.IsSuperLaserEnabled)
+                    _isFiringSuperLaser = false;
+                return;
+            }
             if (_input.Fire && Time.time >= _cooldownTimer)
             {
                 if (_gameType == GameType.normal)
                     FireLaser();
             }
+            
         }
         private void FireLaser()
         {
@@ -88,6 +103,13 @@ namespace Dev.MikeQ.SpaceShooter.Player
         private void FireNormalShot()
         {
             _objectPool.GetPlayerLaser(_topLaserPosition.transform.position);
+        }
+        IEnumerator FireSuperLaser() {
+            _isFiringSuperLaser = true;
+            while (_isFiringSuperLaser) {
+                FireNormalShot();
+                yield return new WaitForSeconds(_timeToWaitSuperLaser);
+            }
         }
         private void DryFire() {
             EventManager.DryFireShot?.Invoke();
