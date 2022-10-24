@@ -11,6 +11,7 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
         [SerializeField] TMP_Text _ammoText;
 
         public static Action<int> UpdateAmmo;
+        public static Action InfiniteAmmo;
 
         void Start()
         {
@@ -28,10 +29,12 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
         private void OnEnable()
         {
             UpdateAmmo += HandleUpdateAmmo;
+            InfiniteAmmo += InfiniteAmmoUI;
         }
         private void OnDisable()
         {
             UpdateAmmo -= HandleUpdateAmmo;
+            InfiniteAmmo -= InfiniteAmmoUI;
         }
 
         private void HandleUpdateAmmo(int ammo) {
@@ -47,8 +50,8 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
                 _ammoText.color = Color.red;
                 EventManager.LowAmmo?.Invoke();
             }
-                
         }
+        private void InfiniteAmmoUI() => _ammoText.text = "\u221E";
     }
 
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3040635770603334188}
   - component: {fileID: 3974968918020670308}
   - component: {fileID: 1246106196401160180}
-  m_Layer: 1
+  m_Layer: 10
   m_Name: FX_Pickup_Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4886,7 +4886,7 @@ GameObject:
   - component: {fileID: 4999281131200773779}
   - component: {fileID: 5164786263887959669}
   - component: {fileID: 5163694335845583129}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FX_Pickup_Glow_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

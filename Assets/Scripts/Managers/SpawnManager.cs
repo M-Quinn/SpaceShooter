@@ -123,6 +123,7 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
         }
 
         IEnumerator SpawnAmmoCoroutine() {
+            _startSpawningAmmo = true;
             while (_startSpawningAmmo) {
                 yield return new WaitForSeconds(2.7f);
                 Instantiate(_ammoPrefab, new Vector3(Random.Range(_minX, _maxX), _topOfTheScreen, 0), Quaternion.identity);

@@ -100,10 +100,13 @@ namespace Dev.MikeQ.SpaceShooter.Player
         private void PauseAmmoDecrement() {
             RefilAmmo();
             _ammoCanDecrement = false;
+            UIManager.InfiniteAmmo?.Invoke();
         }
         private void ResumeAmmoDecrement() {
             RefilAmmo();
             _ammoCanDecrement = true;
+            UIManager.UpdateAmmo(_ammo);
+
         }
     }
 }

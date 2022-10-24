@@ -2745,6 +2745,7 @@ MonoBehaviour:
   _shieldBoostPrefab: {fileID: 6726894991108548812, guid: 5ebc8ce5f05ac6a44bd283bfdaf1119d, type: 3}
   _bigPrefab: {fileID: 7132204443058547837, guid: 34360524303a0c94d97db98d6b694ea6, type: 3}
   _smallPrefab: {fileID: 6167184282015179423, guid: eb7dcc2fb95c08044ac60b23dfc40a96, type: 3}
+  _ammoPrefab: {fileID: 5002211902324812929, guid: 04274bdd9c1522745806a502f70bd1e2, type: 3}
   _enemyContainer: {fileID: 1942829119}
   _enemyPrefab: {fileID: 247898328143643136, guid: 0e45b3333413c324889e80d34db839f2, type: 3}
   _asteroidPrefab: {fileID: 8283670575097995240, guid: ef095877dc0380d4788bcf895356d7e8, type: 3}
@@ -3429,7 +3430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 15
+  m_text: \u221E
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 271e76c5b2fe41b408907732090fc900, type: 2}
   m_sharedMaterial: {fileID: 3448965105866763663, guid: 271e76c5b2fe41b408907732090fc900, type: 2}
