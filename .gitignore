@@ -10,7 +10,7 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 /Assets/Sci-Fi Gun Sounds/
-/Assets/Sci-Fi Gun Sounds.meta
+/Assets/PolygonParticleFX/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
