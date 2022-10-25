@@ -8,6 +8,7 @@ namespace Dev.MikeQ.SpaceShooter.Player {
     public class Movement : MonoBehaviour
     {
         [SerializeField] InputHandler _input;
+        Thrusters _thrusters;
 
         float _speed;
         float _normalSpeed = 5.0f;
@@ -21,12 +22,13 @@ namespace Dev.MikeQ.SpaceShooter.Player {
         private void Start()
         {
             _powerupHandler = GetComponent<PowerupHandler>();
+            _thrusters = GetComponent<Thrusters>();
         }
 
         private void Update()
         {
             _speed = _powerupHandler.IsSpeedBoostEnabled ? _boostSpeed : _normalSpeed;
-            _speed = _input.Thrusters ? _speed + _normalSpeed : _speed;
+            _speed = _thrusters.Engaged ? _speed + _normalSpeed : _speed;
             transform.Translate(new Vector3(_input.Move.x, _input.Move.y, 0) * _speed * Time.deltaTime);
             Vector3 curPos = SetBounds(transform.position);
             transform.position = curPos;
