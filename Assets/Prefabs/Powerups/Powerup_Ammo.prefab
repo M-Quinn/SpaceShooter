@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3974968918020670308}
   - component: {fileID: 1246106196401160180}
   m_Layer: 10
-  m_Name: FX_Pickup_Ammo
+  m_Name: Powerup_Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

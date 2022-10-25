@@ -111,6 +111,9 @@ namespace Dev.MikeQ.SpaceShooter.Player
                 case Powerup.PowerupLogic.Health:
                     EventManager.HealthPickup?.Invoke(1);
                     return true;
+                case Powerup.PowerupLogic.SuperLaser:
+                    StartCoroutine(PowerupCooldown(result => IsSuperLaserEnabled = result, _powerupCooldown));
+                    return true;
                 default:
                     Debug.LogError("No Behavior was detected");
                     return false;
@@ -159,6 +162,16 @@ namespace Dev.MikeQ.SpaceShooter.Player
                 yield return null;
             }
             ui_Image.gameObject.SetActive(false);
+            powerup(false);
+        }
+        IEnumerator PowerupCooldown(Action<bool> powerup, float cooldown)
+        {
+            powerup(true);
+            float timer = Time.time + cooldown;
+            while (Time.time <= timer)
+            {
+                yield return null;
+            }
             powerup(false);
         }
     }

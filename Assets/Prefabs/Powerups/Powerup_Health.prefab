@@ -4889,7 +4889,7 @@ GameObject:
   - component: {fileID: -8530737104769967123}
   - component: {fileID: 146990217521873220}
   m_Layer: 10
-  m_Name: FX_Pickup_Health
+  m_Name: Powerup_Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

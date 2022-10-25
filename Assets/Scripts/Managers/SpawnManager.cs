@@ -14,7 +14,7 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
         [SerializeField] GameObject _bigPrefab;
         [SerializeField] GameObject _smallPrefab;
         [SerializeField] GameObject _healthPrefab;
-        [Header("AmmoPrefab")]
+        [SerializeField] GameObject _superLaserPrefab;
         [SerializeField] GameObject _ammoPrefab;
         [Header("Enemy")]
         [SerializeField] GameObject _enemyContainer;
@@ -157,8 +157,12 @@ namespace Dev.MikeQ.SpaceShooter.GameManagement
             {
                 Instantiate(_smallPrefab, location, Quaternion.identity);
             }
-            else if (chance <= 0.55f) {
+            else if (chance <= 0.60f)
+            {
                 Instantiate(_healthPrefab, location, Quaternion.identity);
+            }
+            else if (chance <= 0.65f) {
+                Instantiate(_superLaserPrefab, location, Quaternion.identity);
             }
         }
 

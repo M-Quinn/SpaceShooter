@@ -8,7 +8,7 @@ namespace Dev.MikeQ.SpaceShooter.Utils {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Powerup : MonoBehaviour
     {
-        public enum PowerupLogic { TripleShot, Shield, SpeedBoost, Big, Small, Ammo, Health }
+        public enum PowerupLogic { TripleShot, Shield, SpeedBoost, Big, Small, Ammo, Health, SuperLaser }
         [SerializeField]
         PowerupLogic _behavior;
         float _speed = 3.0f;

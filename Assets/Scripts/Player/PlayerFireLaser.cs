@@ -19,7 +19,7 @@ namespace Dev.MikeQ.SpaceShooter.Player
         PowerupHandler _powerupHandler;
 
         float _timeToWait = 0.3f;
-        float _timeToWaitSuperLaser = .08f;
+        float _timeToWaitSuperLaser = .01f;
         float _cooldownTimer;
         int _ammo = 15;
         int _maxAmmo = 15;
