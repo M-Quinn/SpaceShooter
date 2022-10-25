@@ -44,6 +44,7 @@ namespace Dev.MikeQ.SpaceShooter.Player {
                     _thrustersImg.transform.parent.gameObject.SetActive(false);
                 }
             }
+            _thrustersImg.fillAmount = (_totalThrusters / 3);
 
         }
 
