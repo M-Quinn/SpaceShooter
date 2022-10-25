@@ -2746,6 +2746,7 @@ MonoBehaviour:
   _bigPrefab: {fileID: 7132204443058547837, guid: 34360524303a0c94d97db98d6b694ea6, type: 3}
   _smallPrefab: {fileID: 6167184282015179423, guid: eb7dcc2fb95c08044ac60b23dfc40a96, type: 3}
   _healthPrefab: {fileID: 4040485509020401158, guid: 80bc3de6d74f61d4090e0d28bcb9305c, type: 3}
+  _superLaserPrefab: {fileID: 2730683761849304365, guid: 4302d4db44783444bb8c3d7a81821298, type: 3}
   _ammoPrefab: {fileID: 5002211902324812929, guid: 04274bdd9c1522745806a502f70bd1e2, type: 3}
   _enemyContainer: {fileID: 1942829119}
   _enemyPrefab: {fileID: 247898328143643136, guid: 0e45b3333413c324889e80d34db839f2, type: 3}
